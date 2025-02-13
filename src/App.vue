@@ -5,30 +5,36 @@ import leafletTest from './components/leafletTest.vue'
 </script>
 
 <template>
+    <div class ="map-holder">
+      <leafletTest class="map"/>
+    </div>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <Helloworld />
-
       
 
-
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
     </div>
   </header>
-
-  <leafletTest />
+  
 </template>
 
 <style scoped>
 header {
   line-height: 1.5;
   max-height: 100vh;
+}
+
+.map-holder {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 40%;
+  height: 70%;
+  transform: translateY(-50%);
+}
+
+.map{
+  width: 100%;
+  height: 100%;
 }
 
 .logo {
@@ -64,7 +70,7 @@ nav a:first-of-type {
 @media (min-width: 1024px) {
   header {
     display: flex;
-    place-items: center;
+    place-items: flex-start;
     padding-right: calc(var(--section-gap) / 2);
   }
 

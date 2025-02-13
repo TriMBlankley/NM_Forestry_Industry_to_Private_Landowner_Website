@@ -12,13 +12,13 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@types/leaflet": "^1.9.16",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mssql": "^11.0.1",
     "mysql2": "^3.12.0",
-    "@types/leaflet": "^1.9.16",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
@@ -28,9 +28,9 @@
     "@types/node": "^22.10.7",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
+    "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vue/compiler-sfc": "^3.5.13",
     "@vue/runtime-core": "^3.5.13",
-    "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "jsdom": "^26.0.0",
