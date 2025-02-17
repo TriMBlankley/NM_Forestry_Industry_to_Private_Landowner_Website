@@ -1,17 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import leafletTest from './components/leafletTest.vue'
-import Footer from './components/Footer.vue';
+import Footer from './components/Footer.vue'
+import MapFilterView from './views/MapFilterView.vue'
 </script>
 
 <template>
   <body>
-    <div class ="map-holder">
-      <leafletTest class="map"/>
-    </div>
-
-    <Footer />
+    <MapFilterView />
   </body>
   
   
@@ -32,6 +28,7 @@ import Footer from './components/Footer.vue';
   width: 100%;
   height: 100%;
 }
+
 
 @media (min-width: 1024px) {
 

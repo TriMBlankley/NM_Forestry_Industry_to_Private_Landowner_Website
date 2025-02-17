@@ -38,8 +38,7 @@ db.connect((err) => {
 app.get('/api/data', (req, res) => {
     //console.log('Received request at /api/data'); 
     // we can add more queries here so it includes type of work if needed
-    const query = 'select * from forest.business'; 
-  
+    const query = 'select business.*, group_concat(business_work.type_of_work order by business_work.type_of_work) as business_work from business left join business_work on business_work.bus_id = business.bus_id group by business.bus_id order by business.bus_name asc;'; 
     db.query(query, (err, results) => {
       if (err) {
         console.error('Query error:', err);
