@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import leafletTest from '../components/leafletTest.vue';
-import BusinessTest from '@/components/BusinessTest.vue';
-import FilterAndSearch from '@/components/FilterAndSearch.vue';
+import BusinessTest from '../components/BusinessTest.vue';
+import FilterAndSearch from '../components/FilterAndSearch.vue';
 </script>
 
 <template>
