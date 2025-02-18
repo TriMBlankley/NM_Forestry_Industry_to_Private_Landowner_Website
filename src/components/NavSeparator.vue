@@ -1,9 +1,10 @@
 <script setup lang="ts">
+
 </script>
 
 <template>
-    
+    Nav Content
 </template>
 
-<style scooped>
+<style scoped>
 </style>

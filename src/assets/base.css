@@ -6,7 +6,7 @@
 
   /* Grapical Elements*/
   --nmf-ge-separator: #e4dbcf;
-  --nmf-ge-button: 214400;
+  --nmf-ge-button: #214400;
   --nmf-ge-focusedButton: #152c00;
 
 
@@ -15,7 +15,7 @@
   --nmf-t-h2: #000a19;
   --nmf-t-a: #002d68;
   --nmf-t-p: #000d1f;
-  --nmf-t-bkContrast: f8f8f9;
+  --nmf-t-bkContrast: #f8f8f9;
 }
 
 

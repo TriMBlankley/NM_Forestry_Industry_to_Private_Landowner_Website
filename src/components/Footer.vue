@@ -3,24 +3,35 @@
 </script>
 
 <template>
-    <div class="nmf-footer">
-        <p> Some Text!</p>
+    <div class="bottom-banner">
+        <p>
+            Website Created in a Joint Project between New Mexico Tech and Navajo Tech
+            <br />
+            Primary Authors: Jena Peterson and Tri Blankley
+        </p>
+        <div class="white-space"></div>
     </div>
 </template>
 
-<style scoped src="@/assets/base.css">
-.nmf-footer {
-    color: var(--nmf-t-bkContrast)
-    background-color: var(--nmf-bk-contrast);
+<style scoped>
+.bottom-banner {
+    position: absolute;
+    top: 95%;
+    width: 100vw;
+    height: 15vh;
+    transform: translateX(-50vw);
 
     display: flex;
-    justify-content: space-around;
+    flex-direction: row-reverse;
 
-    position: absolute;
-    transform: translateY(-80vh);
-    width: 100vw;
-
-    top: 0%;
+    text-align: center;
+    color: var(--nmf-t-bkContrast);
+    background-color: var(--nmf-bk-contrast);
+    
 }
-</style>
 
+.white-space {
+    width: 7.5vw;
+}
+    
+</style>

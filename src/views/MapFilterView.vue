@@ -5,7 +5,7 @@ import FilterAndSearch from '../components/FilterAndSearch.vue';
 </script>
 
 <template>
-    <div class="layout">
+    <div class="map-layout">
         <div class="map-holder">
             <leafletTest class="map"/>
         </div>
@@ -49,9 +49,9 @@ import FilterAndSearch from '../components/FilterAndSearch.vue';
 }
 
 
-.layout{
+.map-layout{
     position: absolute;
-    top: 50%;
+    top: 52.5%;
     left: 2.5%;
     width: 95%;
     height: 75%;
