@@ -1,14 +1,16 @@
 <script setup lang="ts">
-const adress = ""
+    const ENMRDurl = 'https://www.emnrd.nm.gov/'
+
+    const adress = ""
+
 </script>
 
 <template>
     <div class="banner">
         <div class="logo-and-title">
-            <a style="width: 15%;"
-            href="https://www.emnrd.nm.gov/">
-                test nav
-                <img src="../assets/Graphics/ENMRD_Logo.svg" />
+            
+            <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
+                <img src="../assets/Graphics/ENMRDLogoVectorized.svg" alt="ENMRD Logo" width="100">
             </a>
 
             <h1>
