@@ -17,7 +17,6 @@ import NavSeparator from '@/components/NavSeparator.vue';
 <style scoped>
 .logo-and-search {
   width: 100vw;
-  height: 7.5vh;
 
   display: flex;
   
@@ -26,12 +25,6 @@ import NavSeparator from '@/components/NavSeparator.vue';
 
 .nav-separator {
   width: 100vw;
-  height: 5vh;
-
-  display: flex;
-
-  background-color: var(--nmf-ge-separator);
-  
   overflow: hidden;
 }
 
@@ -39,13 +32,11 @@ import NavSeparator from '@/components/NavSeparator.vue';
     position: absolute;
     top: 0%;
     width: 100vw;
-    height: 12.5vh;
     transform: translateX(-50vw);
 
     display: flex;
     flex-direction: column;
     justify-content: flex start;
-    align-items: stretch;
 
     background-color: var(--nmf-bk-backroundMain);
 }
