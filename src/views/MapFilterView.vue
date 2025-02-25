@@ -2,15 +2,35 @@
 import leafletTest from '../components/leafletTest.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
+import type { Business } from '../business-information';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+const businesses = ref<Business[]>([]);
+const error = ref<string | null>(null); 
+
+// gets businesses
+const fetchBusinesses = async () => {
+    try {
+        const response = await axios.get('http://localhost:3000/api/data');
+        businesses.value = response.data;
+        error.value = null; 
+    } catch (err) {
+        error.value = 'Error! Could not get businesses!';
+    }
+};
+onMounted(() => {
+    fetchBusinesses();
+});
 </script>
 
 <template>
     <div class="map-layout">
         <div class="map-holder">
-            <leafletTest class="map"/>
+            <leafletTest :businesses="businesses" class="map"/>
         </div>
         <div class ="business-holder">
-            <BusinessTest />
+            <BusinessTest :businesses="businesses"/>
         </div>
         <div class ="filter-holder">
             <FilterAndSearch />
@@ -40,6 +60,7 @@ import FilterAndSearch from '../components/FilterAndSearch.vue';
     border: 5px solid var(--nmf-ge-separator);
     background-color: var(--nmf-bk-backroundMain);
     border-radius: 5px;
+    display: flex;
 }
 
 .filter-holder{
