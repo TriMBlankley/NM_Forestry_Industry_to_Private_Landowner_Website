@@ -4,6 +4,7 @@ import axios from 'axios';
 import type { Business } from '../business-information';
 
 
+
 const props = defineProps<{ businesses: Business[] }>();
 const error = ref<string | null>(null); 
 </script>
@@ -40,7 +41,8 @@ const error = ref<string | null>(null);
 }
 
 .business-box {
-    border: 2px solid var(--nmf-ge-separator);
+    border-bottom: 2px solid var(--nmf-ge-separator);
+    border-top: 2px solid var(--nmf-ge-separator);
     width: 100%;
     height: auto; 
     padding: 5px;
@@ -51,6 +53,10 @@ const error = ref<string | null>(null);
     flex-direction: column;
     justify-content: flex-start;
     border-radius: 5px;
+}
+
+.business-box:hover {
+    background: var(--nmf-ge-buisness-hover);
 }
 
 </style>

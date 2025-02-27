@@ -52,17 +52,20 @@ onMounted(() => {
   width: 60%;
   height: 100%;
   display: flex;
-  border: 5px solid var(--nmf-ge-separator);
+  
   top:0;
   left:0;
   overflow: hidden;
+
+  border: 2px solid var(--nmf-ge-separator);
+  background-color: var(--nmf-ge-separator);
+  border-radius: 5px;
 }
 
 .map{
     z-index: 1;
     width: 100%;
     height: 100%;
-    border-radius: 3px;
 }
 
 .map-search {
@@ -73,15 +76,16 @@ onMounted(() => {
 
 
 .business-holder{
-    border: 5px solid var(--nmf-ge-separator);
-    background-color: var(--nmf-bk-backroundMain);
-    border-radius: 5px;
     display: flex;
 }
 
 .filter-holder{
     border: 5px solid var(--nmf-ge-separator);
     background-color: var(--nmf-bk-backroundMain);
+    
+
+    border: 2px solid var(--nmf-ge-separator);
+    background-color: var(--nmf-ge-separator);
     border-radius: 5px;
 }
 
@@ -96,8 +100,5 @@ onMounted(() => {
     display: flex;
     justify-content: flex start;
     align-items: stretch;
-    border: 2px solid var(--nmf-ge-separator);
-    background-color: var(--nmf-ge-separator);
-    border-radius: 5px;
 }
 </style>
