@@ -4,9 +4,26 @@ import { ref } from 'vue';
 import leafletTest from '../components/leafletTest.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
+import type { Business } from '../business-information';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-const userInputAdress = ref<string>('');
+const businesses = ref<Business[]>([]);
+const error = ref<string | null>(null); 
 
+// gets businesses
+const fetchBusinesses = async () => {
+    try {
+        const response = await axios.get('http://localhost:3000/api/data');
+        businesses.value = response.data;
+        error.value = null; 
+    } catch (err) {
+        error.value = 'Error! Could not get businesses!';
+    }
+};
+onMounted(() => {
+    fetchBusinesses();
+});
 </script>
 
 <template>
@@ -18,10 +35,10 @@ const userInputAdress = ref<string>('');
                     
             </div>
             <!-- The message tag is the prop that passes the value to the child component-->
-            <leafletTest :adress="userInputAdress" class="map"/>
+            <leafletTest :adress="userInputAdress" :businesses="businesses" class="map"/>
         </div>
         <div class ="business-holder">
-            <BusinessTest />
+            <BusinessTest :businesses="businesses"/>
         </div>
         <div class ="filter-holder">
             <FilterAndSearch />
@@ -58,6 +75,7 @@ const userInputAdress = ref<string>('');
     border: 5px solid var(--nmf-ge-separator);
     background-color: var(--nmf-bk-backroundMain);
     border-radius: 5px;
+    display: flex;
 }
 
 .filter-holder{
