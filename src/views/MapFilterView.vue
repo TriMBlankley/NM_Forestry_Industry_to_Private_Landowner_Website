@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
 import leafletTest from '../components/leafletTest.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
 import type { Business } from '../business-information';
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+
+const userInputAdress = ref<string>('');
 
 const businesses = ref<Business[]>([]);
 const error = ref<string | null>(null); 
