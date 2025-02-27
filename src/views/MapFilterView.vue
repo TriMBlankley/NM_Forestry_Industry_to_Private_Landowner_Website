@@ -1,13 +1,24 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import leafletTest from '../components/leafletTest.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
+
+const userInputAdress = ref<string>('');
+
 </script>
 
 <template>
     <div class="map-layout">
         <div class="map-holder">
-            <leafletTest class="map"/>
+            <div class="map-search">
+                
+                <input type="text" v-model="userInputAdress" placeholder="Local adress">
+                    
+            </div>
+            <!-- The message tag is the prop that passes the value to the child component-->
+            <leafletTest :adress="userInputAdress" class="map"/>
         </div>
         <div class ="business-holder">
             <BusinessTest />
@@ -30,9 +41,16 @@ import FilterAndSearch from '../components/FilterAndSearch.vue';
 }
 
 .map{
+    z-index: 1;
     width: 100%;
     height: 100%;
     border-radius: 3px;
+}
+
+.map-search {
+    z-index: 2;
+    position: absolute;
+    left: 80vh;
 }
 
 

@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { useTemplateRef, onMounted } from 'vue'
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import TopBanner from './views/TopBanner.vue'
+import SiteBanner from './components/SiteBanner.vue'
 import MapFilterView from './views/MapFilterView.vue'
 import Footer from './components/Footer.vue'
+
+const userInputAdress = ref('');
 </script>
 
 <template>
   <body>
-    <TopBanner />
+    <SiteBanner />
     <MapFilterView />
     <Footer />
   </body>
