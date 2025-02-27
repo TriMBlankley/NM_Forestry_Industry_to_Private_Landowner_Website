@@ -27,6 +27,8 @@ onMounted(() => {
 </script>
 
 <template>
+
+    
     <div ref="map"></div>
     
 </template>
