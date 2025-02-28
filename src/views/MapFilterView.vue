@@ -48,13 +48,24 @@ onMounted(() => {
 </template>
 
 <style scoped>
+/* MAIN Css --------- -----------------------------*/
+.map-layout{
+    width: 100vw;
+    height: 80vh;
+    position: absolute;
+    
+    transform: translate(-50%, 16%);
+    
+    display: flex;
+    flex-direction: row;
+}
+
+/* map css -----------------------------*/
 .map-holder {
-  width: 60%;
+  width:80vw;
+  margin-left: 1vw;
   height: 100%;
-  display: flex;
   
-  top:0;
-  left:0;
   overflow: hidden;
 
   border: 5px solid var(--nmf-ge-separator);
@@ -74,33 +85,18 @@ onMounted(() => {
     left: 60vh;
 }
 
-
+/* buisness holder css -----------------------------*/
 .business-holder{
     display: flex;
+    flex-direction: column;
 }
 
+
+/* filter holder css -----------------------------*/
 .filter-holder{
     border: 5px solid var(--nmf-ge-separator);
     background-color: var(--nmf-bk-backroundMain);
-    
-
-    border: 2px solid var(--nmf-ge-separator);
-    background-color: var(--nmf-ge-separator);
     border-radius: 5px;
-
     color: var(--nmf-ge-button);
-}
-
-
-.map-layout{
-    position: absolute;
-    top: 52.5%;
-    left: 2.5%;
-    width: 95%;
-    height: 75%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: flex start;
-    align-items: stretch;
 }
 </style>
