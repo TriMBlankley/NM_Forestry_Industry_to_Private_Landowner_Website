@@ -57,7 +57,7 @@ onMounted(() => {
   left:0;
   overflow: hidden;
 
-  border: 2px solid var(--nmf-ge-separator);
+  border: 5px solid var(--nmf-ge-separator);
   background-color: var(--nmf-ge-separator);
   border-radius: 5px;
 }

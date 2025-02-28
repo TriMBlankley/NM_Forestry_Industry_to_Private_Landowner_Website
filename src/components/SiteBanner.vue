@@ -17,9 +17,9 @@
 
         <div class="nav-separator">
             <div style="margin-right: 40px;">
-                <button>1st Button</button>
-                <button>2nd Button</button>
-                <button>3rd Button</button>
+                <button>Map</button>
+                <button>Business Survey</button>
+                <button>Landowner Survey</button>
             </div>
         </div> 
     </div>
