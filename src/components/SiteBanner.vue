@@ -10,7 +10,7 @@
                 <img src="../assets/Graphics/ENMRDLogoVectorized.svg" alt="ENMRD Logo" height="100%">
             </a>
 
-            <h1 style="margin-left: 20px;">
+            <h1 style="margin-left: 7px;">
                 Forest Industry Leaders of New Mexico 
             </h1>
         </div><!-- Logo and Title    -->
@@ -30,10 +30,10 @@
     position: absolute;
     top: 0;
     width: 100vw;
-    transform: translateX(-50vw);
     align-items: center;
     display: flex;
     flex-direction: column;
+    white-space: nowrap;
 }
 
 .logo-and-title {
@@ -43,7 +43,7 @@
 }
 
 a {
-    margin-left: 10px;
+    margin-left: 7px;
 }
 
 .nav-separator {
@@ -55,8 +55,6 @@ a {
 }
 
 .nav-buttons{
-    
-    
     margin-right: 40px;
 }
 

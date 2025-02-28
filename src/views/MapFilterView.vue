@@ -58,7 +58,7 @@ onMounted(() => {
     height: 80vh;
     position: absolute;
 
-    transform: translate(-50%, 16%);
+    transform: translateY(16%);
 
     display: flex;
     flex-direction: row;
@@ -77,7 +77,7 @@ onMounted(() => {
     margin-left: 1vw;
     z-index: 1;
     width: inherit;
-    height: inherit;
+    height: 100%;
 
     position: absolute;
     top: 0;

@@ -21,6 +21,11 @@ body {
   flex-direction: column;
   overflow: hidden;
   overscroll-behavior: none;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
 }
 
 @media (min-width: 1024px) {

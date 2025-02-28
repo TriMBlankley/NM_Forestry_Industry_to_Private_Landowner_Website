@@ -4,7 +4,7 @@
 
 <template>
     <div class="bottom-banner">
-        <p>
+        <p style="margin-right: 40px; margin-top: 5px;">
             Website Created in a Joint Project between New Mexico Tech and Navajo Tech
             <br />
             Primary Authors: Jena Peterson and Tri Blankley
@@ -19,15 +19,13 @@
     top: 95%;
     width: 100vw;
     height: 15vh;
-    transform: translateX(-50vw);
 
     display: flex;
     flex-direction: row-reverse;
 
     text-align: center;
     color: var(--nmf-t-bkContrast);
-    background-color: var(--nmf-bk-contrast);
-    
+    background-color: var(--nmf-bk-contrast);    
 }
 
 .white-space {
