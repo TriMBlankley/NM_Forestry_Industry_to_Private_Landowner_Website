@@ -34,7 +34,6 @@
 
 <style scoped>
     .box {
-        border-color: black;
         height: auto;
         width: 100%;
         padding: 2px;
@@ -45,4 +44,6 @@
         align-items: center;
         width: 100%;
     }
+
+    input[type=checkbox]:hover{ color: var(--nmf-ge-focusedButton) }
 </style>

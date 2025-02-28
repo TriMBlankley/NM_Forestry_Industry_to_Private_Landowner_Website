@@ -71,7 +71,7 @@ onMounted(() => {
 .map-search {
     z-index: 2;
     position: absolute;
-    left: 80vh;
+    left: 60vh;
 }
 
 
@@ -87,6 +87,8 @@ onMounted(() => {
     border: 2px solid var(--nmf-ge-separator);
     background-color: var(--nmf-ge-separator);
     border-radius: 5px;
+
+    color: var(--nmf-ge-button);
 }
 
 
