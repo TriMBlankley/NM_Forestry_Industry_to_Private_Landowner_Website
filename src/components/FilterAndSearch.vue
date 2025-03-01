@@ -43,6 +43,7 @@ const toggleMenu = () => {
             color: var(--nmf-ge-button);
             background-color: var(--nmf-ge-separator);
             padding: 5px;
+            margin-right: 1em;
             height: 100%;
             width: 100%;
             border-radius: 0px 5px 5px 5px;
