@@ -11,4 +11,6 @@ export interface Business {
     work_radius: number;
     phone_num: string;
     business_work: string;
+    latitude: number;
+    longitude: number;
 }
