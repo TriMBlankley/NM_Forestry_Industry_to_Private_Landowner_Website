@@ -43,9 +43,6 @@ onMounted(() => {
         <div class="business-holder">
             <BusinessTest :businesses="businesses" />
         </div>
-        <!-- <div class="business-holder" style="background-color: purple">
-            <p style="width: 100px;"></p>
-        </div> -->
 
         <!-- filter holder ---------------->
         <div class="filter-holder">

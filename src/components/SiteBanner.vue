@@ -16,10 +16,9 @@
         </div><!-- Logo and Title    -->
 
         <div class="nav-separator">
-                <button>Map</button>
-                <button>Business Survey</button>
-                <button>Landowner Survey</button>
-           
+            <RouterLink class="router-link" to="/">Map Search</RouterLink>
+            <RouterLink class="router-link" to="/IndustrySurvey">Industry Survey</RouterLink>
+            <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>           
         </div> 
     </div>
 </template>
@@ -55,9 +54,7 @@ a {
     margin-right: 40px;
 }
 
-button {
-    background-color: inherit;
-    border: none;
+.router-link {
     color: var(--nmf-t-a);
     font-weight: bold;
     margin-left: 5px;

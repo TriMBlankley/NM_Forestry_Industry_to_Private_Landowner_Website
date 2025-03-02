@@ -3,14 +3,16 @@ import { useTemplateRef, onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 
 import SiteBanner from './components/SiteBanner.vue'
-import MapFilterView from './views/MapFilterView.vue'
+import MapFilterView from './views/MainMapSearch.vue'
 import Footer from './components/Footer.vue'
 </script>
 
 <template>
   <div class="main-body">
     <SiteBanner />
-    <MapFilterView />
+    
+    <router-view />
+
     <Footer />
   </div>
 </template>

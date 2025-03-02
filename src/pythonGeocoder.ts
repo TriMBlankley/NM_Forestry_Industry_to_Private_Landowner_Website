@@ -1,6 +1,6 @@
 // server.ts
 import express from 'express';
-import { spawn } from '@/views/MapFilterView.vue';
+import { spawn } from '@/views/MainMapSearch.vue';
 
 const app = express();
 const port = 3000;
