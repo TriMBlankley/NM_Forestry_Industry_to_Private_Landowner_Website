@@ -3,34 +3,37 @@ import { useTemplateRef, onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 
 import SiteBanner from './components/SiteBanner.vue'
-import MapFilterView from './views/MapFilterView.vue'
+import MapFilterView from './views/MainMapSearch.vue'
 import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <body>
+  <div class="main-body">
     <SiteBanner />
-    <MapFilterView />
+    
+    <router-view />
+
     <Footer />
-  </body>
+  </div>
 </template>
 
 <style scoped>
-body {
+.main-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   overscroll-behavior: none;
 
-  align-items: center;
-  text-align: center;
+  
   min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
   nav {
     text-align: left;
-    margin-left: -1rem;
     font-size: 1rem;
 
     padding: 1rem 0;

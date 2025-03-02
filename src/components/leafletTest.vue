@@ -48,13 +48,7 @@ onMounted(() => {
 <style scoped>
 #map { 
     height: 100px; 
-    position: absolute; 
     z-index: 1; 
 }
 
-.map-search {
-    position: absolute;
-    z-index: 2;
-
-}
 </style>

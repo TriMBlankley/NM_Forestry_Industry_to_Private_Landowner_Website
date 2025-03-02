@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MapFilterView from '@/views/MapFilterView.vue'
+
+import MainMapSearch from '@/views/MainMapSearch.vue'
+import LandownerSurvey from '@/views/LandownerSurvey.vue'
+import IndustrySurvey from '@/views/IndustrySurvey.vue'
 
 const router = createRouter({
   
@@ -8,8 +11,18 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: MapFilterView,
+      component: MainMapSearch,
     },
+    {
+      path: '/LandownerSurvey',
+      name: 'Landowner Survey',
+      component: LandownerSurvey
+    },
+    {
+      path: '/IndustrySurvey',
+      name: 'Industry Survey',
+      component: IndustrySurvey
+    }
   ],
 })
 
