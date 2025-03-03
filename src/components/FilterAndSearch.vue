@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 import folderButton from '@/assets/Graphics/arrowButton.svg'
+import { businessWork } from '@/business-information';
+import type { Business } from '../business-information';
+
+const searchBusinesses = ref('');
+const chosenWorkTypes = ref<string[]>([]);
+const workTypes = businessWork;
+const props = defineProps<{ businesses: Business[] }>();
+const emit = defineEmits(['update:filteredBusinesses']);
 
 const isMenuOpen = ref(false);
 
@@ -18,6 +26,27 @@ const toggleMenu = () => {
     }
 
 };
+const filteredBusinesses = computed(() => {
+    return props.businesses.filter((business) => {
+        const name = business.bus_name ? business.bus_name.toLowerCase() : '';
+        const work = business.business_work ? business.business_work.toLowerCase() : '';
+        const city = business.city ? business.city.toLowerCase() : '';
+
+        const matchesSearch =   name.includes(searchBusinesses.value.toLowerCase()) ||
+                                work.includes(searchBusinesses.value.toLowerCase()) ||
+                                city.includes(searchBusinesses.value.toLowerCase());
+
+        const matchesWorkTypes = chosenWorkTypes.value.length === 0 ||
+                                  chosenWorkTypes.value.some(workType => work.includes(workType.toLowerCase()));
+
+        return matchesSearch && matchesWorkTypes;
+    });
+});
+
+
+watch(filteredBusinesses, (newFilteredBusinesses) => {
+  emit('update:filteredBusinesses', newFilteredBusinesses);
+});
 </script>
 
 
@@ -50,29 +79,29 @@ const toggleMenu = () => {
             min-width: 15vw;
         ">
             <div class="box">
+                <div class="search-box">
+                <input 
+                    type="text" 
+                    v-model="searchBusinesses" 
+                    placeholder="Search businesses..." 
+                    class="map-search"
+                />
+                </div>
+                <p></p>
                 Types of Services:
                 <form>
-                    <input type="checkbox" id="work1">
-                    <label for="work1"> Fencing </label><br>
-                    <input type="checkbox" id="work2">
-                    <label for="work2"> Firewood </label><br>
-                    <input type="checkbox" id="work3">
-                    <label for="work3"> Furiniture </label><br>
-                    <input type="checkbox" id="work4">
-                    <label for="work4"> Landscaping </label><br>
-                    <input type="checkbox" id="work5">
-                    <label for="work5"> Landscape Materials </label><br>
-                    <input type="checkbox" id="work6">
-                    <label for="work6"> Lumber </label><br>
-                    <input type="checkbox" id="work7">
-                    <label for="work7"> Mill </label><br>
-                    <input type="checkbox" id="work8">
-                    <label for="work8"> Tree Services </label><br>
+                    <div v-for="(workType, index) in workTypes" :key="index">
+                        <input 
+                            type="checkbox" 
+                            :id="workType" 
+                            :value="workType" 
+                            v-model="chosenWorkTypes" 
+                        />
+                        <label :for="workType">{{ workType }}</label>
+                    </div>
                 </form>
-            </div>
-
-
         </div>
+    </div>
     </div>
 </template>
 

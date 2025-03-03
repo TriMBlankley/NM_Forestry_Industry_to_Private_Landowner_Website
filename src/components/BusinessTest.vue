@@ -12,7 +12,7 @@ const error = ref<string | null>(null);
 <template>
     <div class="businesses-holder">
         <div class="other-holder" v-if="error">{{ error }}</div>
-            <div v-for="(business, index) in businesses" :key="index" class="business-box">
+            <div v-for="(business, index) in props.businesses" :key="index" class="business-box">
             <p><b>{{ business.bus_name }}</b></p>
             <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
             <p>Phone: {{ business.phone_num }}</p>

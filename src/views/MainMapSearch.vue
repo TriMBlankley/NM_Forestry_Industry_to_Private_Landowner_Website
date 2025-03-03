@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
 import leafletTest from '../components/leafletTest.vue';
@@ -8,7 +8,7 @@ import FilterAndSearch from '../components/FilterAndSearch.vue';
 import type { Business } from '../business-information';
 
 const userInputAdress = ref<string>('');
-
+const filteredBusinesses = ref<Business[]>([]);
 const businesses = ref<Business[]>([]);
 const error = ref<string | null>(null);
 
@@ -32,7 +32,7 @@ onMounted(() => {
         <div class="map-holder">
 
             <!-- The message tag is the prop that passes the value to the child component-->
-            <leafletTest :adress="userInputAdress" :businesses="businesses" class="map" />
+            <leafletTest :adress="userInputAdress" :businesses="filteredBusinesses" class="map" />
 
             <!--<div class="map-search">
                 <input class="map-search" type="text" v-model="userInputAdress" placeholder="Local adress">
@@ -41,12 +41,12 @@ onMounted(() => {
 
         <!-- buisness holder ---------------->
         <div class="business-holder">
-            <BusinessTest :businesses="businesses" />
+            <BusinessTest :businesses="filteredBusinesses" />
         </div>
 
         <!-- filter holder ---------------->
         <div class="filter-holder">
-            <FilterAndSearch />
+            <FilterAndSearch :businesses="businesses" v-model:filteredBusinesses="filteredBusinesses"/>
         </div>
     </div><!-- end map layout-->
 </template>

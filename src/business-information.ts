@@ -14,3 +14,15 @@ export interface Business {
     latitude: number;
     longitude: number;
 }
+
+export const businessWork: string[] = [
+    "Fencing",
+    "Firewood",
+    "Furniture",
+    "Landscaping",
+    "Landscape Materials",
+    "Lumber",
+    "Mill",
+    "Tree Service",
+    // add more business work when needed!
+  ];
