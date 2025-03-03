@@ -5,15 +5,20 @@
 <template>
     <div class="site-banner">
         <div class="logo-and-title">
-            
-            <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
-                <img src="../assets/Graphics/ENMRDLogoVectorized.svg" alt="ENMRD Logo" style="height:100%">
-            </a>
+            <div class="left-title">
+                <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
+                    <img src="../assets/Graphics/ENMRDLogoVectorized.svg" alt="ENMRD Logo" style="height:2.5em">
+                </a>
 
-            <h1 style="margin-left: 7px;">
-                Forest Industry Leaders of New Mexico 
-            </h1>
-        </div><!-- Logo and Title    -->
+                <h1 style="margin-left: 7px;">
+                    Forest Industry Leaders of New Mexico 
+                </h1>
+            </div>
+            <div class="right-home">
+                <RouterLink class="router-link" to="/"  style="margin-right: 0;">
+                    <img src="../assets/Graphics/homebutton.svg" alt="Home" style="height:2em"/></RouterLink>
+            </div>
+            </div><!-- Logo and Title    -->
 
         <div class="nav-separator">
             <RouterLink class="router-link" to="/">Map Search</RouterLink>
@@ -32,9 +37,20 @@
 }
 
 .logo-and-title {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-title {
+  display: flex;
+  align-items: center;
+}
+
+.right-home {
+  display: flex;
+  align-items: center;
 }
 
 a {
@@ -49,6 +65,7 @@ a {
     justify-content: flex-end;
     background-color: var(--nmf-ge-separator);
 }
+
 
 .nav-buttons{
     margin-right: 40px;
