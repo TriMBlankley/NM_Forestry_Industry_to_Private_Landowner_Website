@@ -1,5 +1,10 @@
 <script setup lang="ts">
-    const ENMRDurl = 'https://www.emnrd.nm.gov/'
+import homeButton from "../assets/Graphics/HomeButton.svg"
+import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
+
+
+
+const ENMRDurl = 'https://www.emnrd.nm.gov/'
 </script>
 
 <template>
@@ -7,24 +12,25 @@
         <div class="logo-and-title">
             <div class="left-title">
                 <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
-                    <img src="../assets/Graphics/ENMRDLogoVectorized.svg" alt="ENMRD Logo" style="height:2.5em">
+                    <enmrdLogo alt="ENMRD Logo" style="height:2.5em" />
                 </a>
 
                 <h1 style="margin-left: 7px;">
-                    Forest Industry Leaders of New Mexico 
+                    Forest Industry Leaders of New Mexico
                 </h1>
             </div>
             <div class="right-home">
-                <RouterLink class="router-link" to="/"  style="margin-right: 0;">
-                    <img src="../assets/Graphics/homebutton.svg" alt="Home" style="height:2em"/></RouterLink>
+                <RouterLink class="router-link" to="/" style="margin-right: 0;">
+                    <homeButton class="home-button" alt="HomeButton" style="height:2.5em"/> 
+                </RouterLink>
             </div>
-            </div><!-- Logo and Title    -->
+        </div><!-- Logo and Title    -->
 
         <div class="nav-separator">
             <RouterLink class="router-link" to="/">Map Search</RouterLink>
             <RouterLink class="router-link" to="/IndustrySurvey">Industry Survey</RouterLink>
-            <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>           
-        </div> 
+            <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>
+        </div>
     </div>
 </template>
 
@@ -37,20 +43,21 @@
 }
 
 .logo-and-title {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .left-title {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .right-home {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
+    margin-right: .5em;
 }
 
 a {
@@ -67,7 +74,7 @@ a {
 }
 
 
-.nav-buttons{
+.nav-buttons {
     margin-right: 40px;
 }
 
@@ -78,4 +85,10 @@ a {
     margin-right: 5px;
 }
 
+.home-button {
+    color: var(--nmf-ge-button);
+}
+.home-button:hover {
+    color: var(--nmf-ge-focusedButton);
+}
 </style>

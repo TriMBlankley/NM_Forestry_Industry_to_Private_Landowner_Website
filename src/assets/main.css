@@ -16,6 +16,7 @@ a,
   a:hover {
     color: #69ac2b;
     background-color: hsla(91, 73%, 60%, 0.2);
+    border-radius: 10px;
   }
 }
 
