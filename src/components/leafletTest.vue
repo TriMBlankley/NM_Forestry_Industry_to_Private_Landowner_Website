@@ -29,7 +29,7 @@ var nmfIcon = L.icon({
 const map = ref(null)
 onMounted(() => {
 
-    let inMap = L.map(map.value!).setView([34.063281, -106.905829], 13);
+    let inMap = L.map(map.value!).setView([34.063281, -106.905829], 10);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
