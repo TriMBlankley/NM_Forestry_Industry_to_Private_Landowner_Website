@@ -28,6 +28,9 @@ const nmfIcon = L.icon({
 onMounted(() => {
     leafletMap = L.map(map.value!).setView([34.063281, -106.905829], 13);
 
+    let inMap = L.map(map.value!).setView([34.063281, -106.905829], 10);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'

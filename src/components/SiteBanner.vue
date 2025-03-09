@@ -4,25 +4,25 @@ import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
 
 
 
-const ENMRDurl = 'https://www.emnrd.nm.gov/'
+const ENMRDurl = 'https://www.emnrd.nm.gov/sfd/'
 </script>
 
 <template>
     <div class="site-banner">
         <div class="logo-and-title">
             <div class="left-title">
-                <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
-                    <enmrdLogo alt="ENMRD Logo" style="height:2.5em" />
-                </a>
+                <RouterLink class="router-link" to="/" style="margin-right: 0;">
+                    <homeButton class="home-button" alt="HomeButton" style="height:2.5em"/> 
+                </RouterLink>
 
                 <h1 style="margin-left: 7px;">
                     Forest Industry Leaders of New Mexico
                 </h1>
             </div>
             <div class="right-home">
-                <RouterLink class="router-link" to="/" style="margin-right: 0;">
-                    <homeButton class="home-button" alt="HomeButton" style="height:2.5em"/> 
-                </RouterLink>
+                <a v-bind:href=ENMRDurl target="_blank"> <!-- target="_blank" makes this open the window in a new tab-->
+                    <enmrdLogo alt="ENMRD Logo" style="height:2.5em" />
+                </a>
             </div>
         </div><!-- Logo and Title    -->
 
