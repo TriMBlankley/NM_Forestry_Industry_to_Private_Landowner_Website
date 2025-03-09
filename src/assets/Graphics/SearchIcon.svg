@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%"
+    height="100%" viewBox="0 0 25 33" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="SearchIcon">
+        <path
+            d="M20.093,32.214c-0.231,0.107 -0.495,0.119 -0.734,0.031c-0.24,-0.087 -0.434,-0.266 -0.542,-0.497c-1.046,-2.25 -3.757,-8.083 -3.757,-8.083c-2.223,0.54 -4.623,0.453 -6.93,-0.389c-6.223,-2.268 -9.433,-9.162 -7.164,-15.384c2.268,-6.222 9.162,-9.432 15.384,-7.164c6.223,2.268 9.433,9.162 7.164,15.384c-1.05,2.88 -3.09,5.115 -5.596,6.46c-0,-0 2.638,5.674 3.667,7.889c0.224,0.48 0.015,1.051 -0.465,1.275c-0.328,0.152 -0.7,0.325 -1.027,0.478Zm-4.839,-28.48c-4.563,-1.663 -9.618,0.691 -11.282,5.254c-1.663,4.563 0.691,9.618 5.254,11.282c4.563,1.663 9.618,-0.691 11.282,-5.254c1.663,-4.563 -0.691,-9.618 -5.254,-11.282Z"
+            style="fill:#dd8a24;" />
+    </g>
+</svg>

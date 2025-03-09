@@ -1,54 +1,103 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue' //Reactive type in vue
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 
-import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
+// Leaflet, the api connecting to OpenStreetMap
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
-
-interface Props {
-    adress: string;
-}
-
-const props = defineProps<Props>();
+import SearchIcon from "../assets/Graphics/SearchIcon.svg"
 
 
-// This swaps out the defaut blue leaflet pin to the custom orange one
-//
-//It needs a icon, and a shadow that can be svg's or png's
-var nmfIcon = L.icon({
+const map = ref<HTMLElement | null>(null);
+const searchQuery = ref('');
+const marker = ref<L.Marker | null>(null);
+let leafletMap: L.Map | null = null;
+
+// Custom icon setup
+const nmfIcon = L.icon({
     iconUrl: './src/assets/Graphics/nmfMarker.svg',
     shadowUrl: './src/assets/Graphics/nmfPinShadow.svg',
-
-    iconSize:     [30, 90], // size of the icon
-    shadowSize:   [40, 30], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [17, 61],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    iconSize: [30, 90],
+    shadowSize: [40, 30],
+    iconAnchor: [22, 94],
+    shadowAnchor: [17, 61],
+    popupAnchor: [-3, -76]
 });
 
-const map = ref(null)
 onMounted(() => {
+    leafletMap = L.map(map.value!).setView([34.063281, -106.905829], 13);
 
-    let inMap = L.map(map.value!).setView([34.063281, -106.905829], 13);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(inMap);
-
-    var marker = L.marker([34.063281, -106.905829], {icon: nmfIcon}).addTo(inMap);
+    }).addTo(leafletMap);
 });
-    
+
+const searchLocation = async () => {
+    if (!searchQuery.value) return;
+
+    try {
+        const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery.value}`);
+        if (response.data.length > 0) {
+            const { lat, lon } = response.data[0];
+            leafletMap?.setView([parseFloat(lat), parseFloat(lon)], 13);
+            if (marker.value) {
+                marker.value.setLatLng([parseFloat(lat), parseFloat(lon)]).bindPopup(searchQuery.value).openPopup();
+            } else {
+                marker.value = L.marker([parseFloat(lat), parseFloat(lon)], { icon: nmfIcon }).addTo(leafletMap).bindPopup(searchQuery.value).openPopup();
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching location:', error);
+    }
+};
 </script>
 
 <template>
-    <div ref="map"></div>
+    <div style="position: relative;">
+        <div ref="map" id="map"></div>
+        <div class="map-search">
+            <input v-model="searchQuery" placeholder="Enter Town or City" @keyup.enter="searchLocation" />
+            <button @click="searchLocation">
+                <SearchIcon alt="Search" style="height:1.5em"/>
+            </button>
+        </div>
+
+    </div>
 </template>
 
 <style scoped>
-#map { 
-    height: 100px; 
-    z-index: 1; 
+#map {
+
+  position: absolute;
+  z-index: 1;
+  inset: 0; /* Expands to fill the entire parent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.map-search {
+  position: absolute;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  padding: 4px 4px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input {
+    padding: 5px;
+    margin-right: 5px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    background: none;
+}
 </style>

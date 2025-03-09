@@ -8,6 +8,7 @@ import Footer from './components/Footer.vue'
 </script>
 
 <template>
+
   <div class="main-body">
     <SiteBanner />
     
@@ -18,6 +19,7 @@ import Footer from './components/Footer.vue'
 </template>
 
 <style scoped>
+
 .main-body {
   display: flex;
   flex-direction: column;
