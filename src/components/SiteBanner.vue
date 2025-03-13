@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import homeButton from "../assets/Graphics/HomeButton.svg"
+import nmfLogo from "../assets/Graphics/Logo.svg"
 import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
 
 
@@ -12,7 +12,7 @@ const ENMRDurl = 'https://www.emnrd.nm.gov/sfd/'
         <div class="logo-and-title">
             <div class="left-title">
                 <RouterLink class="router-link" to="/" style="margin-right: 0;">
-                    <homeButton class="home-button" alt="HomeButton" style="height:2.5em"/> 
+                    <nmfLogo class="home-button" alt="HomeButton" style="height:2.5em"/> 
                 </RouterLink>
 
                 <h1 style="margin-left: 7px;">
@@ -47,6 +47,8 @@ const ENMRDurl = 'https://www.emnrd.nm.gov/sfd/'
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin-top: .4em;
 }
 
 .left-title {
