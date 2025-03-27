@@ -20,6 +20,10 @@ a,
   }
 }
 
+*::-webkit-scrollbar {
+  display: none !important; /* Hide all scrollbars */
+}
+
 @media (min-width: 1024px) {
   body {
     display: flex;
