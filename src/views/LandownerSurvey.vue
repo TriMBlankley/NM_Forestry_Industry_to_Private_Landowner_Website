@@ -1,4 +1,4 @@
-
+<!-- Need to add server questions and imput boxes just normal then send the input using vue js to azure data-->
 <script setup lang="ts"></script>
 
 <template>
