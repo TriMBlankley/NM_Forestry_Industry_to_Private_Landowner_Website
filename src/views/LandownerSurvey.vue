@@ -104,7 +104,8 @@
 </template>
 
 <style>
-
+/* All Styles are housed in main.css, as both Industry and Landowner
+survey pages use the same styling */
 </style>
 
 

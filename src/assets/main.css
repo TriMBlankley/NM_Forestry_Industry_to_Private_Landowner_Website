@@ -1,3 +1,6 @@
+/* main.css is used for class styling for global classes, or
+classes that appear often throught the site */
+
 @import './base.css';
 
 #app {
@@ -37,6 +40,8 @@ a,
   }
 }
 
+
+/* Survey Page Styling --------------------------------------------------- */
 
 .survey-main {
   height: 100%;

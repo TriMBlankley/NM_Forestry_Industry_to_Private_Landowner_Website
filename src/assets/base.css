@@ -1,4 +1,9 @@
-
+/*  base.css is where global color variables are defined, and
+the body syleing is described. The body syles in base.css is for
+very general style guides, do not call a body tag in any <template>
+as all components are housed in the 'app', and the 'app' is housed
+in the sites body.
+*/
 :root {
   /* Backround and div element Colors */
   --nmf-bk-backroundMain: #F8F0e6;
