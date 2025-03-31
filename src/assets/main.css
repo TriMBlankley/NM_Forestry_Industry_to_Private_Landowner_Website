@@ -36,3 +36,48 @@ a,
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+.survey-main {
+  height: 100%;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  margin: 15px auto;
+
+}
+
+.survey-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.survey-form h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+}
+
+.survey-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.survey-form input[type="text"],
+.survey-form input[type="number"],
+.survey-form input[type="tel"],
+.survey-form input[type="email"],
+.survey-form input[type="file"],
+.survey-form textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+fieldset {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 4px;
+}

@@ -1,10 +1,10 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="industry-survey-main">
+  <div class="survey-main">
     <h1>Landowner Survey</h1>
 
-    <form class="industry-form">
+    <form class="survey-form">
       <h2>1. Contact Information</h2>
 
       <label>
@@ -104,47 +104,7 @@
 </template>
 
 <style>
-.industry-survey-main {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
-.industry-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.industry-form h2 {
-  margin-top: 2rem;
-  font-size: 1.25rem;
-}
-
-.industry-form label {
-  display: flex;
-  flex-direction: column;
-  font-weight: 500;
-}
-
-.industry-form input[type="text"],
-.industry-form input[type="number"],
-.industry-form input[type="tel"],
-.industry-form input[type="email"],
-.industry-form input[type="file"],
-.industry-form textarea {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-fieldset {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 4px;
-}
 </style>
 
 
