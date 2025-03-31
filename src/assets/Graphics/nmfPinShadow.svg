@@ -1,1 +1,17 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%" height="100%" viewBox="0 0 15 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path id="nmfPinShadow" d="M13.371,6.291c0.657,0.371 1.151,0.916 1.301,1.436c0.149,0.52 -0.068,0.937 -0.572,1.099c-6.087,1.868 -9.028,4.232 -12.147,7.921c-0.093,0.107 -0.619,0.507 -1.268,0.144c-0.644,-0.361 -0.53,-0.967 -0.487,-1.102c1.533,-4.578 2.01,-8.363 0.454,-14.548c-0.124,-0.514 0.12,-0.916 0.642,-1.057c0.521,-0.141 1.243,-0 1.899,0.37c2.936,1.652 7.246,4.083 10.178,5.737Z" style="fill:url(#_Radial1);"/><defs><radialGradient id="_Radial1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(14.2457,-3.61624,3.95512,14.1469,-1.34075,20.4751)"><stop offset="0" style="stop-color:#fff;stop-opacity:0.52"/><stop offset="1" style="stop-color:#a2a2a2;stop-opacity:0.52"/></radialGradient></defs></svg>
+<!-- Author: Tri Blankley -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%"
+    height="100%" viewBox="0 0 15 18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path id="nmfPinShadow"
+        d="M13.371,6.291c0.657,0.371 1.151,0.916 1.301,1.436c0.149,0.52 -0.068,0.937 -0.572,1.099c-6.087,1.868 -9.028,4.232 -12.147,7.921c-0.093,0.107 -0.619,0.507 -1.268,0.144c-0.644,-0.361 -0.53,-0.967 -0.487,-1.102c1.533,-4.578 2.01,-8.363 0.454,-14.548c-0.124,-0.514 0.12,-0.916 0.642,-1.057c0.521,-0.141 1.243,-0 1.899,0.37c2.936,1.652 7.246,4.083 10.178,5.737Z"
+        style="fill:url(#_Radial1);" />
+    <defs>
+        <radialGradient id="_Radial1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+            gradientTransform="matrix(14.2457,-3.61624,3.95512,14.1469,-1.34075,20.4751)">
+            <stop offset="0" style="stop-color:#fff;stop-opacity:0.52" />
+            <stop offset="1" style="stop-color:#a2a2a2;stop-opacity:0.52" />
+        </radialGradient>
+    </defs>
+</svg>

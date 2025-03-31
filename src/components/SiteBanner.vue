@@ -4,7 +4,7 @@
 -->
 <script setup lang="ts">
 // SVG Asset Imports:
-import nmfLogo from "../assets/Graphics/Logo.svg"
+import nmfLogo from "../assets/Graphics/nmfLogo.svg"
 import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
 
 // This is the link that clicking the ENMRD logo redirects to.
