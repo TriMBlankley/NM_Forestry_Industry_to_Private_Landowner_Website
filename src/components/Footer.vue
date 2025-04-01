@@ -1,27 +1,43 @@
-<script setup lang="ts"></script>
+<!-- Dark Blue footer of the website -->
+<script setup lang="ts">
+// Authors and Contributors:
+const authors = "Jena Peterson, Tri Blankley";
+const contributors = 'Dominic DOnofrio'
+</script>
 
 <template>
     <div class="bottom-banner">
-        <p style="margin-right: 1em; margin-top: 1em;">
-            Website Created in a Joint Project between New Mexico Tech and Navajo Tech
+        <p>
+            Created for the New Mexico Forestry Division as a Capstone Project.
             <br />
-            Primary Authors: Jena Peterson and Tri Blankley
+            Authors: {{ authors }} 
+            <br />
+            Contributors: {{ contributors }}
         </p>
     </div>
 </template>
 
 <style scoped>
 .bottom-banner {
+    /* Size */
     width: 100%;
-    height: 15vh;
+    min-height: 15vh;
 
+    /* Display Settings */
     display: flex;
     flex-direction: row-reverse;
+    box-sizing: border-box;
 
+    /* Content Positioning */
     text-align: right;
+
+    /* Color */
     color: var(--nmf-t-bkContrast);
     background-color: var(--nmf-bk-contrast);
+}
 
-    box-sizing: border-box;
+p {
+    margin-right: 1em; 
+    margin-top: 1em;
 }
 </style>
