@@ -16,6 +16,7 @@ export interface Business {
 }
 
 export const businessWork: string[] = [
+    "Consulting",
     "Fencing",
     "Firewood",
     "Furniture",
