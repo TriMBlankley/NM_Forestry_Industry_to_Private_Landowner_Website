@@ -11,7 +11,7 @@ const props = defineProps<{ businesses: Business[] }>();
 // Custom icon setup
 const nmfIcon = L.icon({
   iconUrl: './src/assets/Graphics/nmfMarker.svg',
-  shadowUrl: './src/assets/Graphics/nmfPinShadow.svg',
+  shadowUrl: './src/assets/Graphics/nmfMarkerShadow.svg',
   iconSize: [30, 90],
   shadowSize: [40, 30],
   iconAnchor: [22, 94],
