@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import { useTemplateRef, onMounted } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+// Vue.js Imports
+import { RouterView } from 'vue-router'
 
+// Component Imports
 import SiteBanner from './components/SiteBanner.vue'
-import MapFilterView from './views/MainMapSearch.vue'
 import Footer from './components/Footer.vue'
 </script>
 
 <template>
-
-  <div class="main-body">
+  <div class="main">
     <SiteBanner />
     
+    <!-- router-view is a built-in component, that looks at /src/router/index.ts, and determines
+     the correct view to display based on where in the site the user is -->
     <router-view />
 
     <Footer />
@@ -20,26 +21,32 @@ import Footer from './components/Footer.vue'
 
 <style scoped>
 
-.main-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  overscroll-behavior: none;
-
-  
+.main {
+  /* Size */
   min-height: 100vh;
   width: 100vw;
+
+  /* Display Settings */ 
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
+
+  /* Content Positioning */
+  justify-content: space-between;
+
+  /* Behaviour */
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 @media (min-width: 1024px) {
   nav {
-    text-align: left;
+    /* Font */
     font-size: 1rem;
 
+    /* Content Positioning */
+    text-align: left;
     padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
