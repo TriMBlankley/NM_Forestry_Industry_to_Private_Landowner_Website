@@ -1,13 +1,15 @@
 <script setup lang="ts">
+// Vue.js Imports
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 
+// Component Imports
 import Leaflet from '../components/Leaflet.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
+
 import type { Business } from '../business-information';
 
-const userInputAdress = ref<string>('');
 const filteredBusinesses = ref<Business[]>([]);
 const businesses = ref<Business[]>([]);
 const error = ref<string | null>(null);
@@ -31,8 +33,8 @@ onMounted(() => {
     <div class="map-layout">
         <div class="map-holder">
 
-            <!-- The message tag is the prop that passes the value to the child component-->
-            <Leaflet :adress="userInputAdress" :businesses="filteredBusinesses" class="map" />
+            <!-- The buisnesses tag is the prop that passes the values to the child component to let pins appear on the map-->
+            <Leaflet :businesses="filteredBusinesses" class="map" />
 
             <!--<div class="map-search">
                 <input class="map-search" type="text" v-model="userInputAdress" placeholder="Local adress">
