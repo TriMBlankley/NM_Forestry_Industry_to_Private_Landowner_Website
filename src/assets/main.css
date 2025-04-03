@@ -24,7 +24,7 @@ a,
 }
 
 *::-webkit-scrollbar {
-  display: none !important; /* Hide all scrollbars */
+  display: none !important; /* Hide all scrollbars for chrome based browsers */
 }
 
 @media (min-width: 1024px) {
