@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
 import type { Business } from '../business-information';
 
@@ -7,20 +7,34 @@ import type { Business } from '../business-information';
 
 const props = defineProps<{ businesses: Business[] }>();
 const error = ref<string | null>(null); 
+const emit = defineEmits();
+const handleBusinessClick = (business: Business) => {
+  if (business.latitude && business.longitude) {
+    emit('businessSelected', {
+      lat: business.latitude,
+      lon: business.longitude
+    });
+  }
+};
+
 </script>
 
 <template>
     <div class="businesses-holder">
-        <div class="other-holder" v-if="error">{{ error }}</div>
-            <div v-for="(business, index) in props.businesses" :key="index" class="business-box">
-            <p><b>{{ business.bus_name }}</b></p>
-            <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
-            <p>Phone: {{ business.phone_num }}</p>
-            <p>Address: {{[business.address, business.city, business.zip].filter(Boolean).join(', ')}}</p>
-            <p v-if="business.business_work"> Services: {{ business.business_work.replace(/,/g, ', ').replace(/\b\w/g, char => char.toUpperCase()) }}</p>
-        </div>
+      <div
+        v-for="(business, index) in props.businesses"
+        :key="index"
+        class="business-box"
+        @click="handleBusinessClick(business)"
+      >
+        <p><b>{{ business.bus_name }}</b></p>
+        <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
+        <p>Phone: {{ business.phone_num }}</p>
+        <p>Address: {{ [business.address, business.city, business.zip].filter(Boolean).join(', ') }}</p>
+        <p v-if="business.business_work"> Services: {{ business.business_work.replace(/,/g, ', ').replace(/\b\w/g, char => char.toUpperCase()) }}</p>
+      </div>
     </div>
-</template>
+  </template>
 
 <style scoped>
 .businesses-holder {

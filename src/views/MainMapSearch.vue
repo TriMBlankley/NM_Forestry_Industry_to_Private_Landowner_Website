@@ -13,6 +13,7 @@ import type { Business } from '../business-information';
 const filteredBusinesses = ref<Business[]>([]);
 const businesses = ref<Business[]>([]);
 const error = ref<string | null>(null);
+    const selectedPosition = ref<{ lat: number; lon: number } | null>(null);
 
 // gets businesses
 const fetchBusinesses = async () => {
@@ -24,9 +25,14 @@ const fetchBusinesses = async () => {
         error.value = 'Error! Could not get businesses!';
     }
 };
+
 onMounted(() => {
     fetchBusinesses();
 });
+
+const handleBusinessSelected = (position: { lat: number; lon: number }) => {
+    selectedPosition.value = position; // Store the selected position
+};
 </script>
 
 <template>
@@ -34,7 +40,7 @@ onMounted(() => {
         <div class="map-holder">
 
             <!-- The buisnesses tag is the prop that passes the values to the child component to let pins appear on the map-->
-            <Leaflet :businesses="filteredBusinesses" class="map" />
+            <Leaflet :businesses="filteredBusinesses" :selectedPosition="selectedPosition" class="map" ref="leafletRef" />
 
             <!--<div class="map-search">
                 <input class="map-search" type="text" v-model="userInputAdress" placeholder="Local adress">
@@ -43,7 +49,7 @@ onMounted(() => {
 
         <!-- buisness holder ---------------->
         <div class="business-holder">
-            <BusinessTest :businesses="filteredBusinesses" />
+            <BusinessTest :businesses="filteredBusinesses" @businessSelected="handleBusinessSelected"/>
         </div>
 
         <!-- filter holder ---------------->

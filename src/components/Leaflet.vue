@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, defineProps } from 'vue';
+import { ref, watch, onMounted, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { Business } from '../business-information';
 
 // Define the props to accept businesses from the parent
-const props = defineProps<{ businesses: Business[] }>();
+const props = defineProps<{
+  businesses: Business[];
+  selectedPosition: { lat: number; lon: number } | null;
+}>();
 
 // Custom icon setup
 const nmfIcon = L.icon({
@@ -98,6 +101,12 @@ const searchLocation = async () => {
     console.error('Error fetching location:', error);
   }
 };
+
+watch(() => props.selectedPosition, (newPosition) => {
+  if (leafletMap && newPosition) {
+    leafletMap.setView([newPosition.lat, newPosition.lon], 13); // Update the map view based on the new position
+  }
+});
 </script>
 
 <template>
