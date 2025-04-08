@@ -95,10 +95,29 @@
         <input type="text" name="occupancy" />
       </label>
 
-      <label>
-        Natural Resources:
-        <textarea name="natural_resources" rows="4"></textarea>
-      </label>
+      <fieldset>
+        <legend> Have you experienced a wildfire on your land?</legend>
+          <label>
+            <input type="radio" name="wildfire" value="fireYes" />
+            Yes.
+          </label>
+          <label>
+            <input type="radio" name="wildfire" value="fireNo" />
+            No
+          </label>
+      </fieldset>
+
+      <fieldset>
+        <legend> Have you experienced flooding on your land?</legend>
+          <label>
+            Yes
+            <input type="radio" name="flooding" value="floodYes" />
+          </label>
+          <label>
+            No
+            <input type="radio" name="flooding" value="floodNo" />
+          </label>
+      </fieldset>
     </form>
   </div>
 </template>
