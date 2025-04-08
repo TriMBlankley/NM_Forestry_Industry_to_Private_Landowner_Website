@@ -164,8 +164,9 @@ const searchLocation = async () => {
 // Watch for changes in props.businesses to update the map when the businesses change
 watch(() => props.businesses, (newBusinesses) => {
   if (leafletMap) {
-    updateMapMarkers(newBusinesses);  // Update markers when businesses change
+   // updateMapMarkers(newBusinesses);  // Update markers when businesses change
   }
+    searchLocation();
 });
 
 watch(() => props.selectedPosition, (newPosition) => {
