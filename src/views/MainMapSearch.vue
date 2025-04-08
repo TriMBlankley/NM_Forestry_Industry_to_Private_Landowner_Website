@@ -1,21 +1,18 @@
 <script setup lang="ts">
-// Vue.js Imports
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
-
-// Component Imports
 import Leaflet from '../components/Leaflet.vue';
 import BusinessTest from '../components/BusinessTest.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
-
 import type { Business } from '../business-information';
 
 const filteredBusinesses = ref<Business[]>([]);
+const businessWithMarkers = ref<Business[]>([]); // This will hold the businesses with markers
 const businesses = ref<Business[]>([]);
 const error = ref<string | null>(null);
-    const selectedPosition = ref<{ lat: number; lon: number } | null>(null);
+const selectedPosition = ref<{ lat: number; lon: number } | null>(null);
 
-// gets businesses
+// Fetch businesses from API
 const fetchBusinesses = async () => {
     try {
         const response = await axios.get('http://localhost:3000/api/data');
@@ -30,34 +27,39 @@ onMounted(() => {
     fetchBusinesses();
 });
 
+// Handle business selection to update position
 const handleBusinessSelected = (position: { lat: number; lon: number }) => {
     selectedPosition.value = position; // Store the selected position
 };
+
+// Watch businessWithMarkers for any changes and log it
+watch(businessWithMarkers, (newbusinessWithMarkers) => {
+  console.log('Updated businesses from Leaflet:', newbusinessWithMarkers);
+}, { immediate: true });
+
 </script>
 
 <template>
     <div class="map-layout">
         <div class="map-holder">
 
-            <!-- The buisnesses tag is the prop that passes the values to the child component to let pins appear on the map-->
-            <Leaflet :businesses="filteredBusinesses" :selectedPosition="selectedPosition" class="map" ref="leafletRef" />
-
-            <!--<div class="map-search">
-                <input class="map-search" type="text" v-model="userInputAdress" placeholder="Local adress">
-            </div>-->
+            <!-- Pass filteredBusinesses and bind businessWithMarkers using v-model -->
+            <Leaflet :businesses="filteredBusinesses" :selectedPosition="selectedPosition" v-model:businessWithMarkers="businessWithMarkers" class="map" ref="leafletRef" />
         </div>
 
-        <!-- buisness holder ---------------->
+        <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
         <div class="business-holder">
-            <BusinessTest :businesses="filteredBusinesses" @businessSelected="handleBusinessSelected"/>
+            <BusinessTest :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
         </div>
 
-        <!-- filter holder ---------------->
+        <!-- Filter holder: Pass businesses to FilterAndSearch -->
         <div class="filter-holder">
             <FilterAndSearch :businesses="businesses" v-model:filteredBusinesses="filteredBusinesses"/>
         </div>
     </div><!-- end map layout-->
 </template>
+
+
 
 <style scoped>
 /* MAIN (map layout) CSS --------- -----------------------------*/
