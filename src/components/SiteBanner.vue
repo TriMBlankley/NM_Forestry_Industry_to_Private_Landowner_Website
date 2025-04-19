@@ -9,6 +9,22 @@ import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
 
 // This is the link that clicking the ENMRD logo redirects to.
 const ENMRDurl = 'https://www.emnrd.nm.gov/sfd/'
+
+// Define props
+const props = defineProps({
+    showMap: {
+        type: Boolean,
+        required: true
+    }
+});
+
+// Emit for toggling view
+const emit = defineEmits(['toggleView']);
+
+// Method to handle toggle
+const handleToggle = () => {
+    emit('toggleView');
+};
 </script>
 
 <template>
@@ -37,7 +53,13 @@ const ENMRDurl = 'https://www.emnrd.nm.gov/sfd/'
 
         <!-- This is the thin blue bar running along the bottom of the header, it contains nav buttons for inter-site moovement with router links -->
         <div class="nav-separator">
-            <RouterLink class="router-link" to="/">Map Search</RouterLink>
+            <button class="mobile-toggle" @click="handleToggle">
+                {{ props.showMap ? 'Businesses' : 'Map' }}
+            </button>
+
+            <div class="grow"></div>
+
+            <RouterLink class="router-link desktop-only" to="/">Map Search</RouterLink>
             <RouterLink class="router-link" to="/IndustrySurvey">Industry Survey</RouterLink>
             <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>
         </div>
@@ -110,6 +132,10 @@ a {
     justify-content: flex-end;
 }
 
+.grow {
+    flex-grow: 10;
+}
+
 
 .nav-buttons {
     /* Content Positioning */
@@ -133,5 +159,45 @@ a {
 .home-button:hover {
     /* Color */
     color: var(--nmf-ge-focusedButton);
+}
+
+/* Hide elements based on screen size */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* MOBILE UI --------------------------- */
+.mobile-toggle {
+    /* Color */
+    color: var(--nmf-t-a);
+    background-color: transparent;
+    font-weight: bold;
+    
+    /* Content Positioning */
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0 8px;
+    
+    /* Border */
+    border: none;
+    cursor: pointer;
+    
+    /* Font */
+    font-size: inherit;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.mobile-toggle:hover {
+    color: var(--nmf-ge-focusedButton);
+}
+
+/* Hide toggle button on desktop */
+@media (min-width: 769px) {
+    .mobile-toggle {
+        display: none;
+    }
 }
 </style>
