@@ -155,13 +155,16 @@ const submitForm = async () => {
         <legend>What type of work does your business do?</legend>
         <div v-for="(workType, index) in workTypes" :key="index">
           
-          <input
-            type="checkbox"
-            :id="`work-${index}`"
-            :value="workType"
-            v-model="form.work_types"
-          />
-          <label :for="`work-${index}`">{{ workType }}</label>
+          
+          <label :for="`work-${index}`">
+            <input
+              type="checkbox"
+              :id="`work-${index}`"
+              :value="workType"
+              v-model="form.work_types"
+            />
+            {{ workType }}
+          </label>
         </div>
       </fieldset>
 
