@@ -14,7 +14,7 @@ app.use(cors());
 // cors makes sure that communication can still happen on different ports
 app.use(express.json());
 
-// azure mysql connect stuff
+// This is how connections to the Azure MySQL server is done. Change this based on where the SQL server is being hosted.
 const db = mysql.createConnection({
   host: process.env.busDB_HOST,            
   user: process.env.busDB_USER,            
@@ -22,7 +22,7 @@ const db = mysql.createConnection({
   database: process.env.busDB_NAME,        
   port: 3306,                           
   ssl: {
-    ca: fs.readFileSync("DigiCertGlobalRootCA.crt.pem", "utf8"), // im unsure if this should be in the repo or the best place to store it. i think it depends on where the forestry wants to put it
+    ca: fs.readFileSync("DigiCertGlobalRootCA.crt.pem", "utf8"), 
     rejectUnauthorized: true 
   },
 });
