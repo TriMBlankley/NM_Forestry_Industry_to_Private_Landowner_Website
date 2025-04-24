@@ -116,7 +116,6 @@ const submitForm = async () => {
             </select>
           </span>
       </label>
-
       <label>
         City:
         <input v-model="form.city" type="text" />
