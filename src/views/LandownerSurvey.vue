@@ -1,126 +1,220 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from 'vue';
+import axios from 'axios';
+import { newMexicoCounties } from '@/business-information';
+
+interface LandownerForm {
+  owner_name: string;
+  entity_name: string;
+  phone_num: string;
+  contact_address: string;
+  email: string;
+  land_address: string;
+  land_zip: number | null;
+  land_city: string;
+  land_county: string;
+  parcel_id: string;
+  forest_plan: string;
+  land_size: number | null;
+  occupancy: string;
+  wildfire: string;
+  flooding: string;
+}
+
+const form = reactive<LandownerForm>({
+  owner_name: '',
+  entity_name: '',
+  phone_num: '',
+  contact_address: '',
+  email: '',
+  land_address: '',
+  land_zip: null,
+  land_city: '',
+  land_county: '',
+  parcel_id: '',
+  forest_plan: '',
+  land_size: null,
+  occupancy: '',
+  wildfire: '',
+  flooding: ''
+});
+
+let forestPlanFile: File | null = null;
+
+const handleFileUpload = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  if (target.files && target.files[0]) {
+    forestPlanFile = target.files[0];
+  }
+};
+
+const submitForm = async () => {
+  try {
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(form)) {
+      formData.append(key, value as string | Blob);
+    }
+
+    if (forestPlanFile) {
+      formData.append('mgmt_plan', forestPlanFile);
+    }
+
+    const response = await axios.post('http://localhost:3000/api/submit-landowner', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+
+    alert('Form submitted successfully!');
+    console.log(response.data);
+  } catch (err) {
+    alert('Failed to submit form');
+    console.error(err);
+  }
+};
+
+</script>
 
 <template>
   <div class="survey-main">
     <h1>Landowner Survey</h1>
 
-    <form class="survey-form">
+    <form class="survey-form" @submit.prevent="submitForm">
       <h2>1. Contact Information</h2>
 
       <label>
-        Owner Name:
-        <input type="text" name="owner_name" />
+        <span>Owner Name<span class="required">*</span>:</span>
+        <input v-model="form.owner_name" type="text" required />
       </label>
 
       <label>
         Entity Name (if applicable):
-        <input type="text" name="entity_name" />
+        <input v-model="form.entity_name" type="text" />
       </label>
 
       <label>
-        Phone Number:
-        <input type="tel" name="phone_number" />
+        <span>Phone Number<span class="required">*</span>:</span>
+        <input v-model="form.phone_num" type="tel" required />
       </label>
 
       <label>
-        Address / PO Box:
-        <input type="text" name="contact_address" />
+        <span>Address / PO Box<span class="required">*</span>:</span>
+        <input v-model="form.contact_address" type="text" required />
       </label>
 
       <label>
         Email:
-        <input type="email" name="email" />
+        <input v-model="form.email" type="email" />
       </label>
 
       <h2>2. Location of Land</h2>
 
       <label>
-        Address:
-        <input type="text" name="land_address" />
+        <span>Address<span class="required">*</span>:</span>
+        <input v-model="form.land_address" type="text" required />
       </label>
 
       <label>
-        Zip Code:
-        <input type="number" name="land_zip" />
+        <span>Zip Code<span class="required">*</span>:</span>
+        <input v-model.number="form.land_zip" type="number" required />
       </label>
 
       <label>
-        County:
-        <input type="text" name="land_county" />
+        <span>County<span class="required">*</span>:
+        <select v-model="form.land_county" required>
+          <option value="" disabled>Select a county</option>
+          <option
+            v-for="(county, index) in newMexicoCounties"
+            :key="index"
+            :value="county"
+          >
+            {{ county }}
+          </option>
+        </select>
+      </span>
       </label>
 
       <label>
         City:
-        <input type="text" name="land_city" />
+        <input v-model="form.land_city" type="text" />
       </label>
 
       <h2>3. Land Information</h2>
 
       <label>
-        Parcel ID:
-        <input type="text" name="parcel_id" />
+        <span>Parcel ID<span class="required">*</span>:</span>
+        <input v-model="form.parcel_id" type="text" required />
       </label>
 
       <fieldset>
-        <legend>Do you currently have or have you previously had a forest management plan approved by the Forestry Division?</legend>
+        <span><legend>Do you currently have or have you previously had a forest management plan? <span class="required">*</span></legend></span>
 
         <label>
-          <input type="radio" name="forest_plan" value="current" />
-          Yes, I have a current management plan
+          <input type="radio" name="forest_plan" value="current" v-model="form.forest_plan" />
+          Yes, I have a current plan
         </label>
 
         <label>
-          <input type="radio" name="forest_plan" value="expired" />
-          I have an expired management plan (&gt;10 years old)
+          <input type="radio" name="forest_plan" value="expired" v-model="form.forest_plan" />
+          Expired plan (&gt;10 years old)
         </label>
 
         <label>
-          <input type="radio" name="forest_plan" value="none" />
-          I do not have a forest management plan
+          <input type="radio" name="forest_plan" value="none" v-model="form.forest_plan" />
+          I do not have a plan
         </label>
 
         <label>
-          Upload plan (optional):
-          <input type="file" name="management_plan_upload" />
+          Upload Forest Management Plan PDF (optional):
+          <input type="file" @change="handleFileUpload" accept="application/pdf" />
         </label>
       </fieldset>
 
       <label>
         Land Size (in acres):
-        <input type="number" name="land_size" />
+        <input v-model.number="form.land_size" type="number" />
       </label>
 
       <label>
-        Occupancy of the Site:
-        <input type="text" name="occupancy" />
+        <label for="occupancy"><span>Are there people or cattle on your land?<span class="required">*</span></span></label>
+        <select v-model="form.occupancy" id="occupancy" required>
+          <option value="">--Select--</option>
+          <option value="people">People</option>
+          <option value="cattle">Livestock</option>
+          <option value="both">Both</option>
+          <option value="none">None</option>
+        </select>
       </label>
 
       <fieldset>
-        <legend> Have you experienced a wildfire on your land?</legend>
-          <label>
-            <input type="radio" name="wildfire" value="fireYes" />
-            Yes.
-          </label>
-          <label>
-            <input type="radio" name="wildfire" value="fireNo" />
-            No
-          </label>
+        <legend>Have you experienced a wildfire on your land?<span class="required">*</span></legend>
+        <label>
+          <input type="radio" name="wildfire" value="1" v-model="form.wildfire" required />
+          Yes
+        </label>
+        <label>
+          <input type="radio" name="wildfire" value="0" v-model="form.wildfire" />
+          No
+        </label>
       </fieldset>
 
       <fieldset>
-        <legend> Have you experienced flooding on your land?</legend>
-          <label>
-            Yes
-            <input type="radio" name="flooding" value="floodYes" />
-          </label>
-          <label>
-            No
-            <input type="radio" name="flooding" value="floodNo" />
-          </label>
+        <legend>Have you experienced flooding on your land?<span class="required">*</span></legend>
+        <label>
+          <input type="radio" name="flooding" value="1" v-model="form.flooding" required />
+          Yes
+        </label>
+        <label>
+          <input type="radio" name="flooding" value="0" v-model="form.flooding" />
+          No
+        </label>
       </fieldset>
+
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
+
 
 <style>
 /* All Styles are housed in main.css, as both Industry and Landowner
