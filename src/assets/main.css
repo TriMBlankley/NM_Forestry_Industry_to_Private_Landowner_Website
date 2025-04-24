@@ -82,7 +82,18 @@ a,
 }
 
 fieldset {
-  border: 1px solid #ccc;
-  padding: 1rem;
   border-radius: 4px;
+}
+fieldset label:not([for="management_plan_upload"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  
+  padding: 3px;
+  border-radius: 4px;
+}
+
+input[type="file"] {
+  margin-top: 5px;
 }
