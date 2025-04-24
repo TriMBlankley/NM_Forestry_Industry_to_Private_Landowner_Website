@@ -1,19 +1,28 @@
 <script setup lang="ts">
 // Vue.js Imports
+import { ref } from 'vue';
 import { RouterView } from 'vue-router'
 
 // Component Imports
 import SiteBanner from './components/SiteBanner.vue'
 import Footer from './components/Footer.vue'
+
+const showMap = ref(true);
+
+const handleToggleView = () => {
+    showMap.value = !showMap.value;
+};
 </script>
 
 <template>
   <div class="main">
-    <SiteBanner />
+    <SiteBanner :showMap="showMap" @toggleView="handleToggleView" />
     
     <!-- router-view is a built-in component, that looks at /src/router/index.ts, and determines
      the correct view to display based on where in the site the user is -->
-    <router-view />
+    <RouterView v-slot="{ Component }">
+      <component :is="Component" :showMap="showMap" />
+    </RouterView>
 
     <Footer />
   </div>

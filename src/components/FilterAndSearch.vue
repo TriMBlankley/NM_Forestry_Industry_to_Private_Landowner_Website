@@ -68,24 +68,13 @@ watch(filteredBusinesses, (newFilteredBusinesses) => {
             </svg>
         </button>
 
-        <div v-if="isMenuOpen" style="
-            color: var(--nmf-ge-button);
-            background-color: var(--nmf-ge-separator);
-            padding: 5px;
-            margin-right: 1em;
-            height: 100%;
-            width: 100%;
-            border-radius: 0px 5px 5px 5px;
-            min-width: 15vw;
-        ">
+        <div v-if="isMenuOpen" class="filter-menu">
             <div class="box">
                 <div class="search-box">
-                <input 
-                    type="text" 
-                    v-model="searchBusinesses" 
-                    placeholder="Search businesses..." 
-                    class="map-search"
-                />
+                <input type="text" 
+                       v-model="searchBusinesses" 
+                       placeholder="Search businesses..." 
+                       class="map-search"/>
                 </div>
                 <p></p>
                 Types of Services:
@@ -100,8 +89,8 @@ watch(filteredBusinesses, (newFilteredBusinesses) => {
                         <label :for="workType">{{ workType }}</label>
                     </div>
                 </form>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 
@@ -135,6 +124,18 @@ watch(filteredBusinesses, (newFilteredBusinesses) => {
                translateX(-2px);
 }
 
+/* Filter when is open ------------------ */
+.filter-menu {
+    color: var(--nmf-ge-button);
+    background-color: var(--nmf-ge-separator);
+    padding: 5px;
+    margin-right: 1em;
+    height: 100%;
+    width: auto;
+    border-radius: 0px 5px 5px 5px;
+    min-width: 15vw;
+}
+
 /* Content -------------------------------- */
 .box {
     height: auto;
@@ -151,5 +152,26 @@ input[type=checkbox]:hover {
     color: var(--nmf-ge-focusedButton)
 }
 
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .menu-folder {
+        position: fixed;
+        right: 0;
+        top: 15%;
+
+        height: auto;
+        width: auto;
+
+        
+        z-index: 1000;
+        transition: transform 0.3s ease;
+    }
+
+    .filter-menu {
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+
+}
 
 </style>
