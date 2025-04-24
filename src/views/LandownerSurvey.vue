@@ -110,12 +110,12 @@
       <fieldset>
         <legend> Have you experienced flooding on your land?</legend>
           <label>
-            Yes
             <input type="radio" name="flooding" value="floodYes" />
+            Yes
           </label>
           <label>
-            No
             <input type="radio" name="flooding" value="floodNo" />
+            No
           </label>
       </fieldset>
     </form>
