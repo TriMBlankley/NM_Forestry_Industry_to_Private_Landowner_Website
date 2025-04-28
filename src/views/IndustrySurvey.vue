@@ -60,14 +60,22 @@ const getCoordinates = async (address: string) => {
 };
 
 const submitForm = async () => {
-  // Step 1: Get latitude and longitude based on address, county, and zip
   const { latitude, longitude } = await getCoordinates(form.address);
 
-  // Step 2: Update form data with coordinates
+  // If lat or long are null or the coordinates are not in New Mexico, it will not submit.
+  if (
+    latitude === null || latitude === undefined ||
+    longitude === null || longitude === undefined ||
+    latitude < 30 || latitude > 37 ||
+    longitude < -109 || longitude > -103
+  ) {
+    alert('Coordinates are invalid. Please check the address to ensure the coordinates exist in New Mexico.');
+    return;
+  }
+
   form.latitude = latitude;
   form.longitude = longitude;
 
-  // Step 3: Send form data to the server
   try {
     const response = await axios.post('http://localhost:3000/api/submit', form);
     alert('Submitted successfully!');
@@ -93,7 +101,7 @@ const submitForm = async () => {
 
       <label>
         <span>
-        Address<span class="required">*</span>:
+        Address (Please avoid abbreviating. If there is no set address, type in the city as the address)<span class="required">*</span>:
         </span>
         <input v-model="form.address" type="text" required />
       </label>
@@ -102,7 +110,7 @@ const submitForm = async () => {
           <span>
             Zip<span class="required">*</span>:
           </span>
-        <input v-model.number="form.zip" type="number" required />
+        <input v-model.number="form.zip" type="text" pattern="^\d{5}$" maxlength="5" inputmode="numeric" title="ZIP code must be exactly 5 digits and numbers only" required />
       </label>
 
       <label>
@@ -129,9 +137,9 @@ const submitForm = async () => {
 
       <label>
         <span>
-          Phone Number<span class="required">*</span>:
+          Phone Number <span class="required">*</span>:
         </span>
-        <input v-model="form.phone_num" type="tel" required />
+        <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}(?:\s?(?:x|ext\.?)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number" required />
       </label>
 
       <label>

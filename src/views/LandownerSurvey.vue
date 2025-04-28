@@ -116,7 +116,7 @@ const submitForm = async () => {
 
       <label>
         <span>Zip Code<span class="required">*</span>:</span>
-        <input v-model.number="form.land_zip" type="number" required />
+        <input v-model.number="form.land_zip" type="text" pattern="^\d{5}$" maxlength="5" inputmode="numeric" required />
       </label>
 
       <label>

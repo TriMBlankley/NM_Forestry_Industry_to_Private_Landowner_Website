@@ -5,8 +5,8 @@ import type { Business } from '../business-information';
 
 
 
-const props = defineProps<{ businesses: Business[] }>();
-const error = ref<string | null>(null); 
+const props = defineProps<{ businesses: Business[], error: String }>();
+//const error = ref<string | null>(null); 
 const emit = defineEmits();
 const handleBusinessClick = (business: Business) => {
   if (business.latitude && business.longitude) {
@@ -21,17 +21,23 @@ const handleBusinessClick = (business: Business) => {
 
 <template>
     <div class="businesses-holder">
-      <div
-        v-for="(business, index) in props.businesses"
-        :key="index"
-        class="business-box"
-        @click="handleBusinessClick(business)"
-      >
-        <p><b>{{ business.bus_name }}</b></p>
-        <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
-        <p>Phone: {{ business.phone_num }}</p>
-        <p>Address: {{ [business.address, business.city, business.zip].filter(Boolean).join(', ') }}</p>
-        <p v-if="business.business_work"> Services: {{ business.business_work.replace(/,/g, ', ').replace(/\b\w/g, char => char.toUpperCase()) }}</p>
+      <div class="business-box" v-if="props.error">
+        <p class="error-message">{{ props.error }}</p>
+      </div>
+
+      <div v-else-if="props.businesses.length === 0">
+        <p class="business-box">No businesses found, please refine your search.</p>
+     </div>
+
+      <div v-else>
+        <div
+          v-for="(business, index) in props.businesses" :key="index" class="business-box" @click="handleBusinessClick(business)">
+          <p><b>{{ business.bus_name }}</b></p>
+          <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
+          <p>Phone: {{ business.phone_num }}</p>
+          <p>Address: {{ [business.address, business.city, business.zip].filter(Boolean).join(', ') }}</p>
+          <p v-if="business.business_work"> Services: {{ business.business_work.replace(/,/g, ', ').replace(/\b\w/g, char => char.toUpperCase()) }}</p>
+        </div>
       </div>
     </div>
   </template>
@@ -71,6 +77,11 @@ const handleBusinessClick = (business: Business) => {
 
 .business-box:hover {
     background: var(--nmf-ge-buisness-hover);
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
 }
 
 </style>

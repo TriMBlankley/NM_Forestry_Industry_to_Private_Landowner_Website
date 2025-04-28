@@ -70,7 +70,7 @@ const props = defineProps({
 
             <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
             <div class="business-holder">
-                <BusinessTest :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
+                <BusinessTest :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected" :error="error"/>
             </div>
 
             <!-- Filter holder: Pass businesses to FilterAndSearch -->
