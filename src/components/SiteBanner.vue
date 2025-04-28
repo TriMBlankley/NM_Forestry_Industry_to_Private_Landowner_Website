@@ -3,6 +3,9 @@
  for acessing the main pages.
 -->
 <script setup lang="ts">
+// Vue.js Imports: 
+import { useRoute } from 'vue-router'
+
 // SVG Asset Imports:
 import nmfLogo from "../assets/Graphics/nmfLogo.svg"
 import enmrdLogo from "../assets/Graphics/ENMRDLogoVectorized.svg"
@@ -25,6 +28,16 @@ const emit = defineEmits(['toggleView']);
 const handleToggle = () => {
     emit('toggleView');
 };
+
+// Get current route for the reactive button while on mobile
+const route = useRoute();
+let isMapPage: boolean = true;
+if (route.name === 'home') {
+    isMapPage = true;
+}else {
+    isMapPage = true; 
+}
+
 </script>
 
 <template>
@@ -53,9 +66,17 @@ const handleToggle = () => {
 
         <!-- This is the thin blue bar running along the bottom of the header, it contains nav buttons for inter-site moovement with router links -->
         <div class="nav-separator">
-            <button class="mobile-toggle" @click="handleToggle">
-                {{ props.showMap ? 'Businesses' : 'Map' }}
-            </button>
+            <div class="mobile-only">
+                <button v-if="isMapPage" class="mobile-toggle" @click="handleToggle">
+                    {{ props.showMap ? 'Businesses' : 'Map' }}
+                      <!-- {{ isMapPage }} -->
+                </button>
+                <RouterLink v-else class="router-link mobile-only" to="/">
+                    <!-- Map Search -->
+                     <!-- {{ route.name }} -->
+                    {{ isMapPage }}
+                </RouterLink>
+            </div>
 
             <div class="grow"></div>
 
@@ -164,6 +185,12 @@ a {
 /* Hide elements based on screen size */
 @media (max-width: 768px) {
     .desktop-only {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .mobile-only {
         display: none;
     }
 }
