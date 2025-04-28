@@ -84,34 +84,34 @@ const submitForm = async () => {
 
       <label>
         <span>Owner Name<span class="required">*</span>:</span>
-        <input v-model="form.owner_name" type="text" required />
+        <input v-model="form.owner_name" type="text" maxlength="70" required />
       </label>
 
       <label>
         Entity Name (if applicable):
-        <input v-model="form.entity_name" type="text" />
+        <input v-model="form.entity_name" type="text" maxlength="70" />
       </label>
 
       <label>
         <span>Phone Number<span class="required">*</span>:</span>
-        <input v-model="form.phone_num" type="tel" required />
+        <input v-model="form.phone_num" type="tel" maxlength="25" required />
       </label>
 
       <label>
         <span>Address / PO Box<span class="required">*</span>:</span>
-        <input v-model="form.contact_address" type="text" required />
+        <input v-model="form.contact_address" type="text" maxlength="70" required />
       </label>
 
       <label>
         Email:
-        <input v-model="form.email" type="email" />
+        <input v-model="form.email" type="email" maxlength="70"/>
       </label>
 
       <h2>2. Location of Land</h2>
 
       <label>
         <span>Address<span class="required">*</span>:</span>
-        <input v-model="form.land_address" type="text" required />
+        <input v-model="form.land_address" type="text" maxlength="70" required />
       </label>
 
       <label>
@@ -136,14 +136,14 @@ const submitForm = async () => {
 
       <label>
         City:
-        <input v-model="form.land_city" type="text" />
+        <input v-model="form.land_city" type="text" maxlength="70" />
       </label>
 
       <h2>3. Land Information</h2>
 
       <label>
         <span>Parcel ID<span class="required">*</span>:</span>
-        <input v-model="form.parcel_id" type="text" required />
+        <input v-model="form.parcel_id" type="text" required maxlength="20"/>
       </label>
 
       <fieldset>
@@ -172,7 +172,7 @@ const submitForm = async () => {
 
       <label>
         Land Size (in acres):
-        <input v-model.number="form.land_size" type="number" />
+        <input v-model.number="form.land_size" type="number" maxlength="10"/>
       </label>
 
       <label>

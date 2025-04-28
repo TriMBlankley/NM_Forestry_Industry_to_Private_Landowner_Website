@@ -96,14 +96,14 @@ const submitForm = async () => {
         <span>
         Business Name<span class="required">*</span>:
         </span>
-        <input v-model="form.bus_name" type="text" required />
+        <input v-model="form.bus_name" type="text" maxlength="70" required />
       </label>
 
       <label>
         <span>
         Address (Please avoid abbreviating. If there is no set address, type in the city as the address)<span class="required">*</span>:
         </span>
-        <input v-model="form.address" type="text" required />
+        <input v-model="form.address" type="text" maxlength="70" required />
       </label>
 
       <label>
@@ -126,13 +126,13 @@ const submitForm = async () => {
       </label>
       <label>
         City:
-        <input v-model="form.city" type="text" />
+        <input v-model="form.city" type="text" maxlength="70" />
       </label>
 
     
       <label>
         Mailing Address (if a PO Box is used):
-        <input v-model="form.mailing_add" type="text" />
+        <input v-model="form.mailing_add" type="text" maxlength="70" />
       </label>
 
       <label>
@@ -144,19 +144,19 @@ const submitForm = async () => {
 
       <label>
         Email:
-        <input v-model="form.email" type="email" />
+        <input v-model="form.email" type="email" maxlength="70" />
       </label>
 
       <label>
         Website URL:
-        <input v-model="form.website" type="url" />
+        <input v-model="form.website" type="url" maxlength="70" />
       </label>
 
       <label>
         <span>
           Work radius (in miles) of your business? <span class="required">*</span>
         </span>
-          <input v-model.number="form.work_radius" type="number" required/>
+          <input v-model.number="form.work_radius" type="number" maxlength="3" required/>
         </label>
 
       <fieldset>
