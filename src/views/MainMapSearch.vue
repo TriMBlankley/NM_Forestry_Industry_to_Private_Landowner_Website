@@ -70,7 +70,7 @@ const props = defineProps({
 
             <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
             <div class="business-holder">
-                <BusinessTest :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected" :error="error"/>
+                <BusinessTest :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
             </div>
 
             <!-- Filter holder: Pass businesses to FilterAndSearch -->
@@ -92,7 +92,7 @@ const props = defineProps({
                 />
             </div>
             <div v-else class="business-holder mobile-business-holder">
-                <BusinessTest :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
+                <BusinessTest :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
             </div>
 
             <div class="filter-holder">
