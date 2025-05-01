@@ -48,6 +48,7 @@ app.get('/api/data', (req, res) => {
       }
       //console.log('Query results:', results); 
       res.json(results); // sends data to http://localhost:3000/api/data
+     // db.end();
     });
   });
   
