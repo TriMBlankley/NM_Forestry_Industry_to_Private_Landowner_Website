@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import axios from 'axios';
 import Leaflet from '../components/Leaflet.vue';
-import BusinessTest from '../components/BusinessTest.vue';
+import BusinessList from '../components/BusinessList.vue';
 import FilterAndSearch from '../components/FilterAndSearch.vue';
 import type { Business } from '../business-information';
 
@@ -70,7 +70,7 @@ const props = defineProps({
 
             <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
             <div class="business-holder">
-                <BusinessTest :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
+                <BusinessList :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
             </div>
 
             <!-- Filter holder: Pass businesses to FilterAndSearch -->
@@ -92,7 +92,7 @@ const props = defineProps({
                 />
             </div>
             <div v-else class="business-holder mobile-business-holder">
-                <BusinessTest :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
+                <BusinessList :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
             </div>
 
             <div class="filter-holder">
