@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import cors from 'cors';
 import multer from 'multer';
+import pkg from 'express-validator';
+const { body } = pkg;
 // import that stuff, and axios 
 
 dotenv.config();
@@ -60,7 +62,17 @@ app.listen(port, () => {
 
 
 
-app.post('/api/submit', (req, res) => {
+app.post('/api/submit',[
+  body('bus_name').trim().escape(),
+  body('website').trim().isURL().withMessage('Invalid website URL'),
+  body('zip').trim().escape(),
+  body('city').trim().escape(),
+  body('address').trim().escape(),
+  body('mailing_add').trim().escape(),
+  body('email').trim().normalizeEmail(),
+  body('work_radius').trim().toFloat(),
+  body('phone_num').trim().escape(),
+], (req, res) => {
   const {
     bus_name,
     website,
@@ -126,7 +138,21 @@ app.post('/api/submit', (req, res) => {
   });
 });
 
-app.post('/api/submit-landowner', upload.single('mgmt_plan'), (req, res) => {
+app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
+  // body and validate input fields
+  body('owner_name').trim().escape(),
+  body('entity_name').trim().escape(),
+  body('phone_num').trim().escape(),
+  body('contact_address').trim().escape(),
+  body('email').trim().normalizeEmail(),
+  body('land_address').trim().escape(),
+  body('land_zip').trim().escape(),
+  body('land_city').trim().escape(),
+  body('parcel_id').trim().escape(),
+  body('forest_plan').trim().escape(),
+  body('land_occupancy').toLowerCase(),
+  body('land_size').trim().toFloat(),
+ ], (req, res) => {
   const {
     owner_name,
     entity_name,

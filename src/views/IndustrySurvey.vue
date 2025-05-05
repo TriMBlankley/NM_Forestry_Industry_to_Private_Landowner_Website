@@ -139,7 +139,7 @@ const submitForm = async () => {
         <span>
           Phone Number <span class="required">*</span>:
         </span>
-        <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}(?:\s?(?:x|ext\.?)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number" required />
+        <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?(?:-|\.| )?\d{3}(?:-|\.| )?\d{4}(?:\s?(?:x|x\.|ext|ext\.)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number: 555-555-5555 ext.900 or 555/555/5555" required />
       </label>
 
       <label>

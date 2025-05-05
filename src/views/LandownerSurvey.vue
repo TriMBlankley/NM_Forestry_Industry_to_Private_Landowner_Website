@@ -16,7 +16,7 @@ interface LandownerForm {
   parcel_id: string;
   forest_plan: string;
   land_size: number | null;
-  occupancy: string;
+  land_occupancy: string;
   wildfire: string;
   flooding: string;
 }
@@ -34,7 +34,7 @@ const form = reactive<LandownerForm>({
   parcel_id: '',
   forest_plan: '',
   land_size: null,
-  occupancy: '',
+  land_occupancy: '',
   wildfire: '',
   flooding: ''
 });
@@ -50,6 +50,11 @@ const handleFileUpload = (event: Event) => {
 
 const submitForm = async () => {
   try {
+    if (forestPlanFile && forestPlanFile.type !== 'application/pdf') {
+          alert('The uploaded file must be a PDF.');
+          return; // Prevent submission if the file is not a PDF
+        }
+
     const formData = new FormData();
     for (const [key, value] of Object.entries(form)) {
       formData.append(key, value as string | Blob);
@@ -94,7 +99,7 @@ const submitForm = async () => {
 
       <label>
         <span>Phone Number<span class="required">*</span>:</span>
-        <input v-model="form.phone_num" type="tel" maxlength="25" required />
+          <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?(?:-|\.| )?\d{3}(?:-|\.| )?\d{4}(?:\s?(?:x|x\.|ext|ext\.)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number: 555-555-5555 ext.900 or 555/555/5555" required />
       </label>
 
       <label>
@@ -176,8 +181,8 @@ const submitForm = async () => {
       </label>
 
       <label>
-        <label for="occupancy"><span>Are there people or cattle on your land?<span class="required">*</span></span></label>
-        <select v-model="form.occupancy" id="occupancy" required>
+        <label for="land_occupancy"><span>Are there people or cattle on your land?<span class="required">*</span></span></label>
+        <select v-model="form.land_occupancy" id="land_occupancy" required>
           <option value="">--Select--</option>
           <option value="people">People</option>
           <option value="cattle">Livestock</option>
