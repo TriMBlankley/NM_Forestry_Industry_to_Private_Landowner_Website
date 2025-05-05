@@ -2,7 +2,7 @@
 <script setup lang="ts">
 // Authors and Contributors:
 const authors = "Jena Peterson, Tri Blankley";
-const contributors = 'Dominic DOnofrio'
+const contributors = "Dominic DOnofrio"
 </script>
 
 <template>
