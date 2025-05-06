@@ -4,7 +4,7 @@
 -->
 <script setup lang="ts">
 // Vue.js Imports: 
-import { useRoute } from 'vue-router';
+import {useRoute} from 'vue-router';
 import {computed} from 'vue';
 
 // SVG Asset Imports:
@@ -70,7 +70,7 @@ const isMapPage = computed(() => route.name === 'home');
                 <RouterLink v-else class="router-link mobile-only" to="/">
                     <!-- Map Search -->
                      <!-- {{ route.name }} -->
-                    Back to Map
+                    Map Search
                 </RouterLink>
             </div>
 
