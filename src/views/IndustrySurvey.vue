@@ -139,6 +139,7 @@ const submitForm = async () => {
         <span>
           Phone Number <span class="required">*</span>:
         </span>
+        <!-- That pattern ensures that the phone number is in a certain format ie. can use (),-,/ or nothing to seperate phone numbers and how extensions can be added-->
         <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?(?:-|\.| )?\d{3}(?:-|\.| )?\d{4}(?:\s?(?:x|x\.|ext|ext\.)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number: 555-555-5555 ext.900 or 555/555/5555" required />
       </label>
 
@@ -163,7 +164,7 @@ const submitForm = async () => {
         <legend>What type of work does your business do?</legend>
         <div v-for="(workType, index) in workTypes" :key="index">
           
-          
+          <!-- Prints work types from business-information-->
           <label :for="`work-${index}`">
             <input
               type="checkbox"

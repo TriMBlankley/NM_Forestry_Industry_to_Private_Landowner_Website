@@ -6,7 +6,6 @@ import type { Business } from '../business-information';
 
 
 const props = defineProps<{ businesses: Business[], error: String }>();
-//const error = ref<string | null>(null); 
 const emit = defineEmits();
 const handleBusinessClick = (business: Business) => {
   if (business.latitude && business.longitude) {
@@ -22,14 +21,18 @@ const handleBusinessClick = (business: Business) => {
 <template>
     <div class="businesses-holder">
       <div class="business-box" v-if="props.error">
+        <!-- If there is an error getting the businesses, prints red error message-->
         <p class="error-message">{{ props.error }}</p>
       </div>
 
       <div v-else-if="props.businesses.length === 0">
+        <!-- If no businesses match the filters applied, prints this-->
         <p class="business-box">No businesses found, please refine your search.</p>
      </div>
 
       <div v-else>
+        <!--Prints all businesses that match the filter. Null values are not shown. -->
+        <!-- Click "handleBusinessClick" seeks to that business's location on the map-->
         <div
           v-for="(business, index) in props.businesses" :key="index" class="business-box" @click="handleBusinessClick(business)">
           <p><b>{{ business.bus_name }}</b></p>

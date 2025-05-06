@@ -26,6 +26,8 @@ const toggleMenu = () => {
     }
 
 };
+
+// Takes information from the searchbox and filter checkboxes to apply those filters to the businesses
 const filteredBusinesses = computed(() => {
     return props.businesses.filter((business) => {
         const name = business.bus_name ? business.bus_name.toLowerCase() : '';
@@ -107,8 +109,6 @@ watch(filteredBusinesses, (newFilteredBusinesses) => {
     background: var(--nmf-ge-separator);
     border: none;
     border-radius: 5px 0px 0px 5px;
-    /* This is a short hand syntax */
-
     padding: 5;
     cursor: pointer;
     width: 25px;

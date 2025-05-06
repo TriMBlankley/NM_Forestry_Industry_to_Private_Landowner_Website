@@ -50,9 +50,10 @@ const handleFileUpload = (event: Event) => {
 
 const submitForm = async () => {
   try {
+    // Prevents submission if the file is not a PDF
     if (forestPlanFile && forestPlanFile.type !== 'application/pdf') {
           alert('The uploaded file must be a PDF.');
-          return; // Prevent submission if the file is not a PDF
+          return; 
         }
 
     const formData = new FormData();
@@ -99,6 +100,7 @@ const submitForm = async () => {
 
       <label>
         <span>Phone Number<span class="required">*</span>:</span>
+        <!-- That pattern ensures that the phone number is in a certain format ie. can use (),-,/ or nothing to seperate phone numbers and how extensions can be added-->
           <input v-model="form.phone_num" type="text" pattern="^\(?\d{3}\)?(?:-|\.| )?\d{3}(?:-|\.| )?\d{4}(?:\s?(?:x|x\.|ext|ext\.)\s?\d{1,5})?$" maxlength="25" inputmode="tel" title="Enter a valid phone number: 555-555-5555 ext.900 or 555/555/5555" required />
       </label>
 
@@ -170,8 +172,10 @@ const submitForm = async () => {
         </label>
 
         <label>
-          Upload Forest Management Plan PDF (optional):
-          <input type="file" @change="handleFileUpload" accept="application/pdf" />
+          <div display="mgmt-div">
+            Upload Forest Management Plan PDF (optional):
+            <input type="file" @change="handleFileUpload" accept="application/pdf" />
+          </div>
         </label>
       </fieldset>
 
@@ -222,13 +226,18 @@ const submitForm = async () => {
 
 
 <style>
-/* All Styles are housed in main.css, as both Industry and Landowner
+/* Survey Styles are housed in main.css, as both Industry and Landowner
 survey pages use the same styling */
+
+.mgmt-div {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 600px) {
+  .upload-wrapper {
+    display: block;
+    align-items: center;
+  }
+}
 </style>
-
-
-
-
-
-
-
