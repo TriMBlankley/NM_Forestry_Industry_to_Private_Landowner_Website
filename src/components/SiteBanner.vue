@@ -4,7 +4,8 @@
 -->
 <script setup lang="ts">
 // Vue.js Imports: 
-import { useRoute } from 'vue-router'
+import { useRoute } from 'vue-router';
+import {computed} from 'vue';
 
 // SVG Asset Imports:
 import nmfLogo from "../assets/Graphics/nmfLogo.svg"
@@ -31,12 +32,7 @@ const handleToggle = () => {
 
 // Get current route for the reactive button while on mobile
 const route = useRoute();
-let isMapPage: boolean = true;
-if (route.name === 'home') {
-    isMapPage = true;
-}else {
-    isMapPage = true; 
-}
+const isMapPage = computed(() => route.name === 'home');
 
 </script>
 
@@ -74,7 +70,7 @@ if (route.name === 'home') {
                 <RouterLink v-else class="router-link mobile-only" to="/">
                     <!-- Map Search -->
                      <!-- {{ route.name }} -->
-                    {{ isMapPage }}
+                    Back to Map
                 </RouterLink>
             </div>
 
