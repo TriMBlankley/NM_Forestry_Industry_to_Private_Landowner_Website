@@ -81,24 +81,36 @@ const props = defineProps({
 
 
         <!-- Mobile Layout ---------------------------->
-        <template v-else>
-            <div v-if="props.showMap" class="map-holder mobile-map-holder">
-                <Leaflet 
-                    :businesses="filteredBusinesses" 
-                    :selectedPosition="selectedPosition" 
-                    v-model:businessWithMarkers="businessWithMarkers" 
-                    class="map" 
-                    ref="leafletRef" 
-                />
-            </div>
-            <div v-else class="business-holder mobile-business-holder">
-                <BusinessList :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
-            </div>
+        <!-- Mobile Layout -->
+<template v-else>
+  <!-- Always render Leaflet, just hide it when showMap is false -->
+  <div class="map-holder mobile-map-holder" :style="{ display: props.showMap ? 'block' : 'none' }">
+    <Leaflet 
+      :businesses="filteredBusinesses" 
+      :selectedPosition="selectedPosition" 
+      v-model:businessWithMarkers="businessWithMarkers" 
+      class="map" 
+      ref="leafletRef" 
+    />
+  </div>
 
-            <div class="filter-holder">
-                <FilterAndSearch :businesses="businesses" v-model:filteredBusinesses="filteredBusinesses"/>
-            </div>
-        </template>
+  <!-- Business list is always visible when showMap is false -->
+  <div v-if="!props.showMap" class="business-holder mobile-business-holder">
+    <BusinessList 
+      :error="error" 
+      :businesses="businessWithMarkers" 
+      @businessSelected="handleBusinessSelected"
+    />
+  </div>
+
+  <div class="filter-holder">
+    <FilterAndSearch 
+      :businesses="businesses" 
+      v-model:filteredBusinesses="filteredBusinesses"
+    />
+  </div>
+</template>
+
     </div><!-- end map layout-->
 </template>
 
