@@ -17,6 +17,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: node testserver.js
+    command: node server.js
     environment:
       - NODE_ENV=development
