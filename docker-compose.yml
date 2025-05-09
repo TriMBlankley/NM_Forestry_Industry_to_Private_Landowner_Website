@@ -10,7 +10,7 @@ services:
     environment:
       - NODE_ENV=development
 
-  testserver:
+  server:
     build: .
     ports:
       - "3000:3000"
