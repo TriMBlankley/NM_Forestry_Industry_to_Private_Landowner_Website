@@ -4,8 +4,8 @@
 -->
 <script setup lang="ts">
 // Vue.js Imports: 
-import {useRoute} from 'vue-router';
-import {computed} from 'vue';
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
 
 // SVG Asset Imports:
 import nmfLogo from "../assets/Graphics/nmfLogo.svg"
@@ -46,15 +46,15 @@ const isMapPage = computed(() => route.name === 'home');
         <div class="logo-and-title">
             <div class="left-title">
                 <!-- Router link is used instead of an 'a' tag in order to better integrate with vuejs -->
-                 <!-- If you do not use a ruter link, the page does not store history properly -->
+                <!-- If you do not use a ruter link, the page does not store history properly -->
                 <RouterLink class="router-link" to="/" style="margin-right: 0;">
                     <!-- This uses the SVG of the nmfLogo as a vue component, this makes it load the svg as an inline element, loading the  -->
                     <!-- svg's faster, and makeing them more reactive -->
-                    <nmfLogo class="home-button" alt="HomeButton" style="height:2.5em"/> 
+                    <nmfLogo class="home-button" alt="HomeButton" style="height:2.5em" />
                 </RouterLink>
 
                 <h1 style="margin-left: 7px;"> <!-- Main Title of the Website-->
-                    Forest Industry Leaders of New Mexico
+                    Forest Industries
                 </h1>
             </div>
             <div class="right-home">
@@ -70,7 +70,7 @@ const isMapPage = computed(() => route.name === 'home');
             <div class="mobile-only">
                 <button v-if="isMapPage" class="mobile-toggle" @click="handleToggle">
                     {{ props.showMap ? 'Businesses' : 'Map' }}
-                      <!-- {{ isMapPage }} -->
+                    <!-- {{ isMapPage }} -->
                 </button>
                 <RouterLink v-else class="router-link mobile-only" to="/" @click="setMapView">
                     Map Search
@@ -78,15 +78,17 @@ const isMapPage = computed(() => route.name === 'home');
             </div>
 
             <div class="grow"></div>
-
-            <RouterLink class="router-link desktop-only" to="/">Map Search</RouterLink>
-            <RouterLink class="router-link" to="/IndustrySurvey">Industry Survey</RouterLink>
-            <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>
+            <div class="nav-buttons">
+                <RouterLink class="router-link desktop-only" to="/">Map Search</RouterLink>
+                <RouterLink class="router-link" to="/IndustrySurvey">Industry Survey</RouterLink>
+                <RouterLink class="router-link" to="/LandownerSurvey">Landowner Survey</RouterLink>
+            </div>
         </div>
     </div>
 </template>
 
 <style scoped>
+/* TITLE AND LOGO ---------------------------------------------------------------------------- */
 .site-banner {
     /* Size */
     width: 100%;
@@ -137,6 +139,8 @@ a {
     margin-left: 7px;
 }
 
+
+/* THIN NAV BAR --------------------------------------------------------------------------------- */
 .nav-separator {
     /* Size */
     width: 100vw;
@@ -149,7 +153,7 @@ a {
     flex-direction: row;
 
     /* Content Positioning */
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
 .grow {
@@ -159,7 +163,7 @@ a {
 
 .nav-buttons {
     /* Content Positioning */
-    margin-right: 40px;
+    margin-right: 15px;
 }
 
 .router-link {
@@ -168,14 +172,14 @@ a {
     font-weight: bold;
 
     /* Content Positioning */
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 5px;
 }
 
 .home-button {
     /* Color */
     color: var(--nmf-ge-button);
 }
+
 .home-button:hover {
     /* Color */
     color: var(--nmf-ge-focusedButton);
@@ -194,22 +198,20 @@ a {
     }
 }
 
-/* MOBILE UI --------------------------- */
+/* MOBILE UI ---------------------------------------------------------------------- */
 .mobile-toggle {
     /* Color */
     color: var(--nmf-t-a);
     background-color: transparent;
     font-weight: bold;
-    
+
     /* Content Positioning */
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 0 8px;
-    
+    margin-left: 15px;
+
     /* Border */
     border: none;
     cursor: pointer;
-    
+
     /* Font */
     font-size: inherit;
     font-family: inherit;

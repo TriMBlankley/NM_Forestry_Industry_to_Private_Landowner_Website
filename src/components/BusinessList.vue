@@ -4,7 +4,6 @@ import axios from 'axios';
 import type { Business } from '../business-information';
 
 
-
 const props = defineProps<{ businesses: Business[], error: String }>();
 const emit = defineEmits();
 const handleBusinessClick = (business: Business) => {
@@ -15,6 +14,7 @@ const handleBusinessClick = (business: Business) => {
     });
   }
 };
+
 
 </script>
 

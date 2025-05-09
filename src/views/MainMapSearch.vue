@@ -122,7 +122,7 @@ const props = defineProps({
 
 /* map css -----------------------------*/
 .map-holder {
-    height: 80vw;
+    height: 80vh;
     width: 65vw;
 
     overflow: hidden;
