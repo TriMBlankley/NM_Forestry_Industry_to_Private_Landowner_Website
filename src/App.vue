@@ -12,11 +12,15 @@ const showMap = ref(true);
 const handleToggleView = () => {
     showMap.value = !showMap.value;
 };
+
 </script>
 
 <template>
   <div class="main">
-    <SiteBanner :showMap="showMap" @toggleView="handleToggleView" />
+    <SiteBanner :showMap="showMap" 
+                @toggleView="showMap = !showMap"
+                @setMapView="(value) => showMap = value"
+    />
     
     <!-- router-view is a built-in component, that looks at /src/router/index.ts, and determines
      the correct view to display based on where in the site the user is -->

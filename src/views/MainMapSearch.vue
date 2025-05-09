@@ -108,12 +108,12 @@ const props = defineProps({
 /* MAIN (map layout) CSS --------- -----------------------------*/
 .map-layout {
     width: 100%;
-    height: 80vh;
+    min-height: 80vh;
 
     margin: 1em 0;
     
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 
     justify-content: space-between;
 
@@ -122,7 +122,6 @@ const props = defineProps({
 
 /* map css -----------------------------*/
 .map-holder {
-    margin: 0 1em;
     height: 100%;
     width: 65vw;
 
@@ -177,14 +176,14 @@ const props = defineProps({
 @media (max-width: 768px) {
     .map-layout {
         flex-direction: column;
-        height: auto;
+       
     }
 
     .mobile-map-holder,
     .mobile-business-holder {
-        width: 100%;
-        height: 60vh;
-        margin: 1em 0;
+        width: 95vw;
+        min-height: 80vh;
+        margin: auto;
     }
 
     .filter-holder {

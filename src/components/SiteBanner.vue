@@ -23,11 +23,16 @@ const props = defineProps({
 });
 
 // Emit for toggling view
-const emit = defineEmits(['toggleView']);
+const emit = defineEmits(['toggleView', 'setMapView']);
 
 // Method to handle toggle
 const handleToggle = () => {
     emit('toggleView');
+};
+
+// Method to explicitly set map view to true
+const setMapView = () => {
+    emit('setMapView', true);
 };
 
 // Get current route for the reactive button while on mobile
@@ -67,9 +72,7 @@ const isMapPage = computed(() => route.name === 'home');
                     {{ props.showMap ? 'Businesses' : 'Map' }}
                       <!-- {{ isMapPage }} -->
                 </button>
-                <RouterLink v-else class="router-link mobile-only" to="/">
-                    <!-- Map Search -->
-                     <!-- {{ route.name }} -->
+                <RouterLink v-else class="router-link mobile-only" to="/" @click="setMapView">
                     Map Search
                 </RouterLink>
             </div>
