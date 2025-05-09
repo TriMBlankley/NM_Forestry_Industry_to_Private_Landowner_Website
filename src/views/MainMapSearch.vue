@@ -122,7 +122,7 @@ const props = defineProps({
 
 /* map css -----------------------------*/
 .map-holder {
-    height: 100%;
+    height: 80vw;
     width: 65vw;
 
     overflow: hidden;
@@ -182,7 +182,7 @@ const props = defineProps({
     .mobile-map-holder,
     .mobile-business-holder {
         width: 95vw;
-        min-height: 80vh;
+        height: 80vh;
         margin: auto;
     }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, defineProps, defineEmits } from 'vue';
+import { ref, watch, onMounted, onUnmounted, defineProps, defineEmits } from 'vue';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -113,6 +113,8 @@ function updateMapMarkers(filteredBusinessess: Business[]) {
   }
 }
 
+const resizeObserver = ref<ResizeObserver | null>(null);
+
 // Initialize the map
 onMounted(() => {
   leafletMap = L.map(map.value!).setView([34.063281, -106.905829], 13);
@@ -126,6 +128,23 @@ onMounted(() => {
     updateMapMarkers(props.businesses); // This will add all the markers for the businesses
   } else {
     console.warn('No businesses available to display markers');
+  }
+
+  // re-render map if it was resized
+  resizeObserver.value = new ResizeObserver(() => {
+    if (leafletMap) {
+      leafletMap.invalidateSize();
+    }
+  });
+  
+  if (map.value) {
+    resizeObserver.value.observe(map.value);
+  }
+});
+
+onUnmounted(() => {
+  if (resizeObserver.value) {
+    resizeObserver.value.disconnect();
   }
 });
 
@@ -191,6 +210,11 @@ watch(() => props.selectedPosition, (newPosition) => {
 
 <style scoped>
 #map {
+  height: 100%;
+  width: 100%;
+  min-height: 400px; /* Ensures minimum height */
+  z-index: 1;
+
   position: absolute;
   z-index: 1;
   inset: 0;
