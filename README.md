@@ -1,11 +1,13 @@
-#NM Forest Industry Map and Data Collection Website
+# NM Forest Industry Map and Data Collection Website#
+
 **Readme**
 **Tri Blankley, Jena Peterson**
 **Contributors: Dominic DOnofrio**
 **May 13th, 2025**
 
-##Spinning up the Website:
-###Creating Landowner and Industry Survey Databases
+## Spinning up the Website:
+
+### Creating Landowner and Industry Survey Databases
 
 - Check Database-Info file for SQL code and business data.
 - Use the given create statements to create the tables (If not using MySQL, the format may need to change)
