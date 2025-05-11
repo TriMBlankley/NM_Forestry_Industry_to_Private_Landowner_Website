@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, defineProps, defineEmits } from 'vue';
-import axios from 'axios';
+import { defineProps, defineEmits } from 'vue';
 import type { Business } from '../business-information';
-
 
 const props = defineProps<{ businesses: Business[], error: String }>();
 const emit = defineEmits();
+
+//If a business is clicked, it'll emit that business location so the map can take the user to that location.
 const handleBusinessClick = (business: Business) => {
   if (business.latitude && business.longitude) {
     emit('businessSelected', {
@@ -14,8 +14,6 @@ const handleBusinessClick = (business: Business) => {
     });
   }
 };
-
-
 </script>
 
 <template>

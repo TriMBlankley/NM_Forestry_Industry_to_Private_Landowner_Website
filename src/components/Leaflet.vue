@@ -12,6 +12,7 @@ const props = defineProps<{
   selectedPosition: { lat: number; lon: number } | null;
 }>();
 const emit = defineEmits(['update:businessWithMarkers']);
+//Emit changes in businessWithMarkers so BusinessList can show updated map. 
 watch(businessWithMarkers, (newbusinessWithMarkers) => {
   emit('update:businessWithMarkers', newbusinessWithMarkers);
 });
@@ -34,7 +35,7 @@ const searchQuery = ref('');
 
 // Function to calculate the distance between two points using Haversine formula (in kilometers)
 function getDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
-  const R = 6371; // Radius of the Earth in kilometers
+  const R = 6371;
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
   const a =
@@ -65,6 +66,7 @@ function updateMapMarkers(filteredBusinessess: Business[]) {
     // Remove existing markers
     leafletMap.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
+        //Below may show an error where leafletMap is possibly NULL, ignore unless map doesn't render.
         leafletMap.removeLayer(layer);
       }
     });
@@ -101,6 +103,7 @@ function updateMapMarkers(filteredBusinessess: Business[]) {
         businessesWithMarkers.push(business);
         // Create the marker and bind the popup content
         L.marker([business.latitude, business.longitude], { icon: nmfIcon })
+          //Below may show an error where leafletMap is possibly NULL, ignore unless map doesn't render.
           .addTo(leafletMap)
           .bindPopup(popupContent);
       }
@@ -130,7 +133,7 @@ onMounted(() => {
     console.warn('No businesses available to display markers');
   }
 
-  // re-render map if it was resized
+  // Re-render map if it was resized
   resizeObserver.value = new ResizeObserver(() => {
     if (leafletMap) {
       leafletMap.invalidateSize();
@@ -153,21 +156,21 @@ const searchLocation = async () => {
   if (!searchQuery.value) {
     // If searchQuery is empty, show all businesses
     updateMapMarkers(props.businesses);
-    console.log("Shit")
     return; // Exit the function early
   }
     console.log(searchQuery.value)
   try {
-    console.log("Testing")
+    //console.log("Testing")
     const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery.value} New Mexico`);
-    console.log("Got past response:")
-    console.log(response)
+    //console.log("Got past response:")
+    //console.log(response)
     if (response.data.length > 0) {
       const { lat, lon } = response.data[0];
       leafletMap?.setView([parseFloat(lat), parseFloat(lon)], 13);
       if (marker.value) {
         marker.value.setLatLng([parseFloat(lat), parseFloat(lon)]).bindPopup(searchQuery.value).openPopup();
       } else {
+        //Below may show an error where leafletMap is possibly NULL, ignore unless map doesn't render.
         marker.value = L.marker([parseFloat(lat), parseFloat(lon)], { icon: nmfIcon }).addTo(leafletMap).bindPopup(searchQuery.value).openPopup();
       }
 

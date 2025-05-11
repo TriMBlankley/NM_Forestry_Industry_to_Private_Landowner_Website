@@ -48,6 +48,7 @@ const handleFileUpload = (event: Event) => {
   }
 };
 
+//Submits survey information
 const submitForm = async () => {
   try {
     // Prevents submission if the file is not a PDF
@@ -226,8 +227,7 @@ const submitForm = async () => {
 
 
 <style>
-/* Survey Styles are housed in main.css, as both Industry and Landowner
-survey pages use the same styling */
+/* Survey Styles are housed in main.css */
 
 .mgmt-div {
   display: flex;

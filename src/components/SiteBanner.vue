@@ -118,8 +118,6 @@ const isMapPage = computed(() => route.name === 'home');
 .left-title {
     /* Display Settings */
     display: flex;
-
-    /* Behaviour */
     align-items: center;
 }
 

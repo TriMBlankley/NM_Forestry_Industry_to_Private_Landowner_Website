@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue';
-
 import folderButton from '@/assets/Graphics/arrowButton.svg'
 import { businessWork } from '@/business-information';
 import type { Business } from '../business-information';
@@ -10,13 +9,12 @@ const chosenWorkTypes = ref<string[]>([]);
 const workTypes = businessWork;
 const props = defineProps<{ businesses: Business[] }>();
 const emit = defineEmits(['update:filteredBusinesses']);
-
 const isMenuOpen = ref(false);
-
 const buttonClosed = ref('svg-button');
 const buttonOpen = ref('svg-button svg-button-flipped');
 let buttonClass = buttonClosed
 
+// Handles filter pop-out
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
     if (isMenuOpen.value == false) {
@@ -45,7 +43,7 @@ const filteredBusinesses = computed(() => {
     });
 });
 
-
+// When changes happen in the search/filter, emit those changes so updates can happen instantly
 watch(filteredBusinesses, (newFilteredBusinesses) => {
   emit('update:filteredBusinesses', newFilteredBusinesses);
 });
@@ -69,7 +67,7 @@ watch(filteredBusinesses, (newFilteredBusinesses) => {
                 </g>
             </svg>
         </button>
-
+        <!--Search bar + filter menu -->
         <div v-if="isMenuOpen" class="filter-menu">
             <div class="box">
                 <div class="search-box">
@@ -170,8 +168,6 @@ input[type=checkbox]:hover {
     .filter-menu {
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     }
-
-
 }
 
 </style>

@@ -63,55 +63,59 @@ const props = defineProps({
     <div class="map-layout">
         <template v-if="!isMobile">
             <div class="map-holder">
-
                 <!-- Pass filteredBusinesses and bind businessWithMarkers using v-model -->
-                <Leaflet :businesses="filteredBusinesses" :selectedPosition="selectedPosition" v-model:businessWithMarkers="businessWithMarkers" class="map" ref="leafletRef" />
+                <Leaflet 
+                    :businesses="filteredBusinesses" 
+                    :selectedPosition="selectedPosition" 
+                    v-model:businessWithMarkers="businessWithMarkers" 
+                    class="map" 
+                    ref="leafletRef" />
             </div>
-
-            <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
+                <!-- Business holder: Pass the businessWithMarkers to BusinessTest -->
             <div class="business-holder">
-                <BusinessList :error="error" :businesses="businessWithMarkers" @businessSelected="handleBusinessSelected"/>
+                <BusinessList 
+                    :error="error" 
+                    :businesses="businessWithMarkers" 
+                    @businessSelected="handleBusinessSelected"/>
             </div>
-
-            <!-- Filter holder: Pass businesses to FilterAndSearch -->
+                 <!-- Filter holder: Pass businesses to FilterAndSearch -->
             <div class="filter-holder">
-                <FilterAndSearch :businesses="businesses" v-model:filteredBusinesses="filteredBusinesses"/>
+                <FilterAndSearch 
+                    :businesses="businesses" 
+                    v-model:filteredBusinesses="filteredBusinesses"/>
             </div>
         </template>
-
-
-        <!-- Mobile Layout ---------------------------->
         <!-- Mobile Layout -->
 <template v-else>
-  <!-- Always render Leaflet, just hide it when showMap is false -->
-  <div class="map-holder mobile-map-holder" :style="{ display: props.showMap ? 'block' : 'none' }">
-    <Leaflet 
-      :businesses="filteredBusinesses" 
-      :selectedPosition="selectedPosition" 
-      v-model:businessWithMarkers="businessWithMarkers" 
-      class="map" 
-      ref="leafletRef" 
-    />
-  </div>
+  <!-- Always renders Leaflet, just hide it when showMap is false so it doesn't mess with BusinessList -->
+    <div class="map-holder mobile-map-holder" :style="{ display: props.showMap ? 'block' : 'none' }">
+        <Leaflet 
+        :businesses="filteredBusinesses" 
+        :selectedPosition="selectedPosition" 
+        v-model:businessWithMarkers="businessWithMarkers" 
+        class="map" 
+        ref="leafletRef" 
+        />
+    </div>
 
   <!-- Business list is always visible when showMap is false -->
-  <div v-if="!props.showMap" class="business-holder mobile-business-holder">
-    <BusinessList 
-      :error="error" 
-      :businesses="businessWithMarkers" 
-      @businessSelected="handleBusinessSelected"
-    />
-  </div>
+    <div v-if="!props.showMap" class="business-holder mobile-business-holder">
+        <BusinessList 
+        :error="error" 
+        :businesses="businessWithMarkers" 
+        @businessSelected="handleBusinessSelected"
+        />
+    </div>
 
-  <div class="filter-holder">
-    <FilterAndSearch 
-      :businesses="businesses" 
-      v-model:filteredBusinesses="filteredBusinesses"
-    />
-  </div>
+    <div class="filter-holder">
+        <FilterAndSearch 
+        :businesses="businesses" 
+        v-model:filteredBusinesses="filteredBusinesses"
+        />
+    </div>
 </template>
 
-    </div><!-- end map layout-->
+    </div>
 </template>
 
 

@@ -26,7 +26,7 @@ const fetchAndSavePdf = async (id) => {
 
     // Query to get the PDF blob from the database by the specific ID
     const [results] = await connection.execute(
-      'SELECT mgmt_plan FROM land WHERE owner_id = ?',
+      'SELECT mgmt_plan FROM land WHERE land_id = ?',
       [id]
     );
 
@@ -60,9 +60,8 @@ const fetchAndSavePdf = async (id) => {
   }
 };
 
-a = 4;
 // Example: Fetch and save the PDF for a specific ID (replace a with the actual ID)
-fetchAndSavePdf(a);
+fetchAndSavePdf(14);
 
 
 

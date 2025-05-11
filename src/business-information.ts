@@ -25,7 +25,7 @@ export const businessWork: string[] = [
     "Lumber",
     "Mill",
     "Tree Service",
-    // add more business work when needed!
+    // Add more business work when needed!
   ];
 
   export const newMexicoCounties = [

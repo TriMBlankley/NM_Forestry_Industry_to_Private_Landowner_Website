@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
+import { reactive } from 'vue';
 import axios from 'axios';
 import { businessWork, newMexicoCounties } from '@/business-information';
 
@@ -38,8 +38,8 @@ const form = reactive<SurveyForm>({
 });
 
 // Function to get latitude and longitude using Nominatim (OpenStreetMap)
-const getCoordinates = async (address: string) => {
-  const formattedAddress = `${address}, New Mexico`;
+const getCoordinates = async (address: string, zip: number | null, county: string) => {
+  const formattedAddress = `${address}, ${county}, New Mexico, ${zip}`;
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(formattedAddress)}&addressdetails=1&limit=1`;
 
   try {
@@ -60,7 +60,7 @@ const getCoordinates = async (address: string) => {
 };
 
 const submitForm = async () => {
-  const { latitude, longitude } = await getCoordinates(form.address);
+  const { latitude, longitude } = await getCoordinates(form.address, form.zip, form.county);
 
   // If lat or long are null or the coordinates are not in New Mexico, it will not submit.
   if (
@@ -77,7 +77,8 @@ const submitForm = async () => {
   form.longitude = longitude;
 
   try {
-    const response = await axios.post('http://localhost:3000/api/submit', form);
+    // Change localhost when running live
+    const response = await axios.post('http://localhost:3000/api/submit-business', form);
     alert('Submitted successfully!');
     console.log(response.data);
   } catch (error) {
@@ -116,6 +117,7 @@ const submitForm = async () => {
       <label>
         <span>
           County<span class="required">*</span>:
+          <!--Shows the list of counties-->
             <select v-model="form.county" required>
               <option value="" disabled>Select a county</option>
               <option v-for="(county, index) in newMexicoCounties" :key="index" :value="county">

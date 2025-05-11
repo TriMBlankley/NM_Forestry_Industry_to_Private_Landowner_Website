@@ -6,7 +6,7 @@ import cors from 'cors';
 import multer from 'multer';
 import pkg from 'express-validator';
 const { body } = pkg;
-// import that stuff, and axios 
+
 
 dotenv.config();
 const app = express();
@@ -29,7 +29,7 @@ const db = mysql.createConnection({
   },
 });
 
-// connect + some error checking to ensure it is actually working
+// Connects & some error checking to ensure it is actually working
 db.connect((err) => {
   if (err) {
     console.error('Did not connect:', err.stack);
@@ -40,8 +40,7 @@ db.connect((err) => {
 
 // testing if it prints
 app.get('/api/data', (req, res) => {
-    //console.log('Received request at /api/data'); 
-    // we can add more queries here so it includes type of work if needed
+    // Selects all the business information and sets up the type_of_work into a better format
     const query = 'select business.*, group_concat(business_work.type_of_work order by business_work.type_of_work) as business_work from business left join business_work on business_work.bus_id = business.bus_id group by business.bus_id order by business.bus_name asc;'; 
     db.query(query, (err, results) => {
       if (err) {
@@ -49,20 +48,20 @@ app.get('/api/data', (req, res) => {
         return res.status(500).send('Query failed');
       }
       //console.log('Query results:', results); 
-      res.json(results); // sends data to http://localhost:3000/api/data
-     // db.end();
+      res.json(results); // sends data to /api/data
     });
   });
   
 
-// should be at 3000 since that's what it is set to
+// Should be changed to where it is running, rather than localhost.
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
 
 
-
-app.post('/api/submit',[
+//Post to the Business / Industry database
+//Sanitize the given data
+app.post('/api/submit-business',[
   body('bus_name').trim().escape(),
   body('website').trim().isURL().withMessage('Invalid website URL'),
   body('zip').trim().escape(),
@@ -138,8 +137,9 @@ app.post('/api/submit',[
   });
 });
 
+//Post to the Landowner Database
+// Santize + normalize the given data
 app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
-  // body and validate input fields
   body('owner_name').trim().escape(),
   body('entity_name').trim().escape(),
   body('phone_num').trim().escape(),
@@ -173,15 +173,14 @@ app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
 
   const mgmt_plan = req.file?.buffer || null; 
 
-  // 1. Insert into landowner table
+  // Landowner data
   const ownerQuery = `
     INSERT INTO landowner (owner_name, entity_name, phone_num, contact_address, email)
     VALUES (?, ?, ?, ?, ?)
   `;
   const ownerValues = [owner_name, entity_name, phone_num, contact_address, email];
 
-  // Open a new connection (optional, but as you mentioned, connect-on-submit style)
-
+  // Open a new connection for just the landowner database.
   const connection = mysql.createConnection({
     host: process.env.landDB_HOST,
     user: process.env.landDB_USER,
@@ -207,9 +206,10 @@ app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
         return res.status(500).send('Failed to insert landowner');
       }
 
+      // Ensures that the owner_id matches for the landowner and land
       const owner_id = ownerResult.insertId;
 
-      // 2. Insert land details using owner_id foreign key
+      // Land information
       const landQuery = `
         INSERT INTO land (
           owner_id, land_address, land_zip, land_city, land_county,
@@ -233,7 +233,7 @@ app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
       ];
 
       connection.query(landQuery, landValues, (landErr) => {
-        connection.end(); // Close connection after both inserts
+        connection.end(); // Closes connection after both inserts
 
         if (landErr) {
           console.error('Insert land error:', landErr);
