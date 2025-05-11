@@ -1,39 +1,35 @@
-# NM_Forestry
+#NM Forest Industry Map and Data Collection Website
+**Readme**
+**Tri Blankley, Jena Peterson**
+**Contributors: Dominic DOnofrio**
+**May 13th, 2025**
 
-This template should help get you started developing with Vue 3 in Vite.
+##Spinning up the Website:
+###Creating Landowner and Industry Survey Databases
 
-## Recommended IDE Setup
+- Check Database-Info file for SQL code and business data.
+- Use the given create statements to create the tables (If not using MySQL, the format may need to change)
+- Use the csv documents to import business data and type of work.
+  Create the .env file to be able to connect to the database
+  This is where the information to connect to the database is kept. If the database is not being run on a Microsoft MySQL Azure server, the connection information within server.js may need to change.
+  .env file should be as follows
+  Industry / Business Database
+  busDB_HOST=(server name)
+  busDB_USER=(username)
+  busDB_PASSWORD=(password)
+  busDB_NAME=(database name)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Landowner Database
+landDB_HOST=(server name)
+landDB_USER=(username)
+landDB_PASSWORD=(password)
+landDB_NAME=(database name)
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
+Spin an instance of the website with Docker. These commands may require super-user access to execute depending on your system's access settings.
+The docker file will run the node.js server connecting to the Microsoft database and the npm server providing the locally hosted instance of the website. When you add or remove npm packages from the website, you may have to rebuild the docker container to see those changes reflected.
+Install docker on your system, if on linux distributions that use apt use
+$ apt-get install docker
+Build the docker environment with
+$ docker compose build
+Run the docker environment with:
+$ docker compose up
