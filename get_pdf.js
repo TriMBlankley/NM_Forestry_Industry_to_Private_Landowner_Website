@@ -60,7 +60,7 @@ const fetchAndSavePdf = async (id) => {
   }
 };
 
-// Example: Fetch and save the PDF for a specific ID (replace a with the actual ID)
+// Change number to given owner ID
 fetchAndSavePdf(14);
 
 
