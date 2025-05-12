@@ -17,10 +17,10 @@
 - This is where the information to connect to the database is kept. If the database is not being run on a Microsoft MySQL Azure server, the connection information within server.js may need to change.
 - .env file should be as follows
 
-  > Industry / Business Database
-  > busDB_HOST=(server name)
-  > busDB_USER=(username)
-  > busDB_PASSWORD=(password)
+  > Industry / Business Database  
+  > busDB_HOST=(server name)  
+  > busDB_USER=(username)  
+  > busDB_PASSWORD=(password)  
   > busDB_NAME=(database name)
 
   > Landowner Database  
