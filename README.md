@@ -1,8 +1,6 @@
 # NM Forest Industry Map and Data Collection Website
 
-**Tri Blankley, Jena Peterson**
-**Contributors: Dominic DOnofrio**
-**May 13th, 2025**
+> **Tri Blankley, Jena Peterson** > **Contributors: Dominic DOnofrio** > **May 13th, 2025**
 
 ## Spinning up the Website:
 
