@@ -23,10 +23,10 @@
   > busDB_PASSWORD=(password)
   > busDB_NAME=(database name)
 
-  > Landowner Database
-  > landDB_HOST=(server name)
-  > landDB_USER=(username)
-  > landDB_PASSWORD=(password)
+  > Landowner Database  
+  > landDB_HOST=(server name)  
+  > landDB_USER=(username)  
+  > landDB_PASSWORD=(password)  
   > landDB_NAME=(database name)
 
 ### Spin an instance of the website with Docker. These commands may require super-user access to execute depending on your system's access settings.
