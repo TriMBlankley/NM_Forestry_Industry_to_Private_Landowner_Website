@@ -54,9 +54,10 @@ app.get('/api/data', (req, res) => {
   
 
 // Should be changed to where it is running, rather than localhost.
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
 
 
 //Post to the Business / Industry database
@@ -246,3 +247,31 @@ app.post('/api/submit-landowner', upload.single('mgmt_plan'),[
   });
 });
 
+// When the serve.js is shut down, it'll close out the remaining database connections
+function shutdown(signal) {
+  console.log(`\nReceived ${signal}. Closing server and database connection...`);
+
+  // Closes HTTP server
+  server.close(() => {
+    console.log('HTTP server closed.');
+
+    // Closes the db connection that's connected to the business/industry database
+    db.end((err) => {
+      if (err) {
+        console.error('Error closing database connection:', err.stack);
+      } else {
+        console.log('Database connection closed.');
+      }
+
+      process.exit();
+    });
+  });
+}
+
+// Listen for termination signals
+process.on('SIGINT', () => shutdown('SIGINT'));   // Ctrl+C
+process.on('SIGTERM', () => shutdown('SIGTERM')); // Docker
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  shutdown('uncaughtException');
+});
