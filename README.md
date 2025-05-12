@@ -40,3 +40,5 @@
 - - $ docker compose build
 - Run the docker environment with:
 - - $ docker compose up
+ 
+#### Further information can be found within the Moving Forward document.
