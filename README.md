@@ -10,11 +10,12 @@
 
 - Check Database-Info file for SQL code and business data.
 - Use the given create statements to create the tables (If not using MySQL, the format may need to change)
-- Use the csv documents to import business data and type of work.
+- Use the csv documents to import business data and type of work. 
 
 ### Create the .env file to be able to connect to the database
 
 - This is where the information to connect to the database is kept. If the database is not being run on a Microsoft MySQL Azure server, the connection information within server.js may need to change.
+- If using Microsoft Azure, add DigiCertGlobalRootCA.crt.pem into the NM_Forestry file. It can be found [here](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-connect-tls-ssl#download-the-public-ssl-certificate)
 - .env file should be as follows
 
   > Industry / Business Database  
@@ -28,6 +29,7 @@
   > landDB_USER=(username)  
   > landDB_PASSWORD=(password)  
   > landDB_NAME=(database name)
+
 
 ### Spin an instance of the website with Docker. These commands may require super-user access to execute depending on your system's access settings.
 
