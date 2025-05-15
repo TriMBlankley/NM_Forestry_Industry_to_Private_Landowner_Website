@@ -41,4 +41,4 @@
 - Run the docker environment with:
 - - $ docker compose up
  
-#### Further information can be found within the Moving Forward document.
+#### Further information can be found within the NM_Forestry_Data_Collection_Website_NMT_IT_Sr_Design_2025 and NM_Forestry_Moving Forewards Doc PDFs.
