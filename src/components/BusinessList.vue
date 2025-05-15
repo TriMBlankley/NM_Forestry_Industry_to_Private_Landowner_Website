@@ -36,7 +36,7 @@ const handleBusinessClick = (business: Business) => {
           <p><b>{{ business.bus_name }}</b></p>
           <p v-if="business.website">Website: <a :href="business.website" target="_blank">{{ business.website }}</a></p>
           <p>Phone: {{ business.phone_num }}</p>
-          <p v-if="business.email">Email: {{ business.email }}</p>
+          <!--<p v-if="business.email">Email: {{ business.email }}</p>-->
           <p>Address: {{ [business.address, business.city, business.zip].filter(Boolean).join(', ') }}</p>
           <p v-if="business.business_work"> Services: {{ business.business_work.replace(/,/g, ', ').replace(/\b\w/g, char => char.toUpperCase()) }}</p>
         </div>

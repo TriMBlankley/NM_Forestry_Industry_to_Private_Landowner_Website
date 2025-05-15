@@ -181,8 +181,8 @@ const submitForm = async () => {
       </fieldset>
 
       <label>
-        Land Size (in acres):
-        <input v-model.number="form.land_size" type="number" maxlength="10"/>
+        <span>Land Size (in acres)<span class="required">*</span>:</span>
+        <input v-model.number="form.land_size" type="number" required maxlength="10"/>
       </label>
 
       <label>
